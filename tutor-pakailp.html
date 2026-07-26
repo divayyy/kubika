@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KUBIKA | Panduan Pengguna Media</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        :root { 
+            --primary: #f59e0b; 
+            --dark-bg: #f0f9ff; 
+            --card-bg: #ffffff; 
+            --accent: #b91c1c;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: #1e2937;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 2px solid var(--primary);
+            padding: 10px 0;
+        }
+
+        .hero-mini {
+            padding: 100px 0 20px; 
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.12), transparent);
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(15,23,42,0.08);
+        }
+
+        .step-tag {
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        h2 { font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-bottom: 15px; }
+        h3 { font-size: 1.25rem; color: #b45309; margin-top: 15px; border-bottom: 1px solid rgba(180, 83, 9, 0.3); display: inline-block; }
+
+        .feature-box {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            font-weight: bold;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-nav:hover { background: #d97706; color: #ffffff; }
+
+        ul li { margin-bottom: 8px; }
+
+        .text-secondary { color: #64748b !important; }
+        .border-secondary { border-color: #e2e8f0 !important; }
+        .border-info { border-color: #93c5fd !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="fw-bold fs-4" style="color: var(--accent);">KUBIKA Guide</span>
+            <a href="dashboard.html" class="btn-nav"><i class="fas fa-th-large"></i> Kembali ke Dashboard</a>
+        </div>
+    </nav>
+
+    <header class="hero-mini text-center">
+        <div class="container">
+            <h1 class="fw-bold display-5" style="color:#b91c1c;">Panduan Penggunaan Media</h1>
+            <p class="lead text-secondary">Pelajari cara pendaftaran hingga menguasai fitur interaktif KUBIKA.</p>
+        </div>
+    </header>
+
+    <main class="container pb-5">
+        
+        <section class="section-card">
+            <span class="step-tag">Langkah 1</span>
+            <h2><i class="fas fa-user-plus"></i> Login & Pengaturan Awal</h2>
+            <ul>
+                <li>Masukkan <b>Nama</b> Anda pada kolom yang tersedia di halaman awal.</li>
+                <li>Pilih jenis <b>Perangkat</b> yang digunakan (Handphone atau Laptop/PC).</li>
+                <li>Klik <b>Masuk Sekarang</b> untuk diarahkan ke dashboard utama.</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <span class="step-tag">Langkah 2</span>
+            <h2><i class="fas fa-home"></i> Navigasi Dashboard</h2>
+            <p>Setelah masuk, kamu akan menemukan dua menu utama:</p>
+            <div class="row g-3 text-center mt-2">
+                <div class="col-md-6">
+                    <div class="p-3 border border-secondary rounded">
+                        <i class="fas fa-book-open menu-icon"></i>
+                        <h4>Menu Materi Balok</h4>
+                        <p class="small text-secondary">Eksplorasi konsep titik, rusuk, bidang, dan diagonal balok secara visual.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 border border-secondary rounded">
+                        <i class="fas fa-circle-notch menu-icon"></i>
+                        <h4>Menu Materi Tabung</h4>
+                        <p class="small text-secondary">Eksplorasi konsep jari-jari, tinggi, luas selimut, dan volume tabung secara visual.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section class="section-card">
+            <span class="step-tag">Langkah 3</span>
+            <h2><i class="fas fa-mouse-pointer"></i> Cara Menggunakan Menu Materi</h2>
+            <p>Di dalam menu <b>Materi</b>, terdapat tiga sub-fitur utama untuk membantumu belajar:</p>
+            
+            <div class="feature-box">
+                <h3><i class="fas fa-book-reader"></i> Materi</h3>
+                <p>Eksplorasi konsep bangun ruang secara mendalam. Gunakan fitur <b>Ceklis Unsur</b> untuk memunculkan bagian tertentu dan <b>Slider</b> untuk memanipulasi bentuk objek secara <i>real-time</i>.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3><i class="fas fa-robot"></i> Latihan dengan AI</h3>
+                <p>Uji pemahamanmu dengan soal-soal interaktif. Jika menemui kesulitan, gunakan <b>Tombol AI Clue</b> untuk mendapatkan petunjuk pengerjaan atau penjelasan rumus secara otomatis.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3><i class="fas fa-question-circle"></i> Kuis</h3>
+                <p>Evaluasi akhir untuk mengukur kemampuanmu. Selesaikan seluruh soal kuis untuk melihat skor akhir dan posisi kamu di <b>Leaderboard</b> kelas.</p>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <span class="step-tag">Langkah 4</span>
+            <h2><i class="fas fa-mouse-pointer"></i> Cara Menggunakan Fitur</h2>
+            <p>Di dalam modul <b>Materi</b>, manfaatkan fitur-fitur berikut:</p>
+            
+            <div class="feature-box">
+                <h3><i class="fas fa-check-square"></i> Ceklis Unsur (Filter)</h3>
+                <p>Klik tanda ceklis pada daftar unsur (misal: "Diagonal Ruang"). Objek tersebut akan menyala atau muncul pada gambar 3D, memudahkanmu membedakan setiap bagian.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3><i class="fas fa-arrows-alt-v"></i> Visualisasi Slider</h3>
+                <p>Gunakan slider untuk mengubah ukuran bangun ruang secara <i>real-time</i> atau melihat animasi perubahan bentuk.</p>
+            </div>
+
+            <div class="feature-box">
+                <h3><i class="fas fa-box-open"></i> Game Jaring-Jaring</h3>
+                <p>Gunakan tombol animasi untuk melihat bagaimana bangun ruang "dibuka" menjadi jaring-jaring atau "ditutup" kembali menjadi bangun ruang utuh.</p>
+            </div>
+        </section>
+
+        <section class="section-card border-info">
+            <span class="step-tag">Langkah 5</span>
+            <h2><i class="fas fa-trophy"></i> Latihan Soal</h2>
+            <p>Masuk ke menu <b>Latihan Soal</b> untuk memulai evaluasi:</p>
+            <ul>
+                <li>Baca soal dengan teliti, perhatikan gambar bangun ruang yang disediakan.</li>
+                <li>Jika sulit, gunakan <b>Tombol AI Clue</b> untuk mendapatkan petunjuk rumus atau langkah pengerjaan.</li>
+                <li>Setelah selesai, skor kamu akan otomatis terekam.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-4 border-top border-secondary">
+        <p class="text-secondary mb-1">KUBIKA © 2026 | Pendidikan Matematika UNM</p>
+        <p class="fw-bold" style="color: var(--accent);">Jurusan Matematika UNM</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

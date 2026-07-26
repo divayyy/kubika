@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUBIKA | Latihan Tabung</title>
+
+<style>
+    /* 1. Reset agar full layar */
+    * { box-sizing: border-box; }
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100vh; /* Memaksa tinggi minimal layar */
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        background-image: url('assets/images/background1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #1e2937;
+        padding: 40px 20px; /* Memberi jarak agar tidak terlalu rapat di pinggir */
+    }
+
+    /* 2. Mengatur container agar lebih lebar dan rapi */
+    .container { 
+        max-width: 1200px; /* Ditingkatkan untuk layar laptop */
+        margin: auto; 
+        background: rgba(255, 255, 255, 0.93); /* terang, agar teks lebih terbaca */
+        padding: 40px; 
+        border-radius: 20px;
+        min-height: 90vh; /* Agar container tetap terlihat besar */
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+    }
+
+    h1, h2 { color: #b91c1c; }
+    
+    .soal { 
+        background: #f8fafc; 
+        border: 1px solid #e2e8f0; 
+        border-radius: 14px; 
+        padding: 20px; 
+        margin-bottom: 20px; 
+    }
+
+    .soal p{
+        line-height:1.6;
+    }
+    
+    .btn-ai { 
+        margin-top: 12px; padding: 10px 18px; border-radius: 12px; 
+        background: #f59e0b; color: #ffffff; border: none; 
+        cursor: pointer; font-weight: 600; transition: .3s;
+    }
+    .btn-ai:hover{
+        background:#d97706;
+    }
+    
+    .back-btn { 
+        display: inline-block; margin-bottom: 20px; padding: 10px 20px; 
+        border-radius: 12px; background: transparent; color: #64748b; 
+        text-decoration: none; font-weight: 600; border: 1px dashed #e2e8f0;
+        transition:.3s;
+    }
+    .back-btn:hover{
+        border-style:solid;
+        border-color:#f59e0b;
+        color:#b91c1c;
+        background:#fefce8;
+    }
+    
+    .section-title { margin-top: 30px; border-left: 4px solid #f59e0b; padding-left: 10px; }
+    .text-biru { color: #3b82f6; font-weight: bold; }
+    footer { margin-top: 40px; text-align: center; color: #94a3b8; font-size:14px; }
+
+    /* ===== Modal AI ===== */
+    .ai-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.5);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+    .ai-modal.active { display: flex; }
+    .modal-content {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 16px;
+        max-width: 90%;
+        max-height: 80%;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+    }
+    .copy-btn {
+        background: #f59e0b;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 10px 5px;
+        transition:.3s;
+    }
+    .copy-btn:hover {
+        background: #d97706;
+    }
+    .close-btn {
+        background: transparent;
+        color: #ef4444;
+        border: 1px solid #ef4444;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition:.3s;
+    }
+    .close-btn:hover {
+        background: #fef2f2;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <a href="tabuunglp.html" class="back-btn">⬅ Kembali</a>
+    <h1>Latihan Geometri</h1>
+    <h2>Materi: Tabung (Silinder)</h2>
+
+    <h2 class="section-title">🥤 Koleksi Soal Tabung</h2>
+
+<div class="soal">
+    <p class="text-biru">Soal 1: Volume Kaleng</p>
+    <p>Sebuah kaleng susu berbentuk tabung memiliki jari-jari 7 cm dan tinggi 10 cm. Berapakah volume kaleng tersebut? (Gunakan π ≈ 22/7).</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 2: Luas Selimut</p>
+    <p>Sebuah pipa air berbentuk tabung memiliki panjang 2 meter dan diameter 20 cm. Berapakah luas permukaan selimut pipa tersebut?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 3: Konversi Kapasitas</p>
+    <p>Sebuah tangki air berbentuk tabung dengan diameter 1,4 meter dan tinggi 2 meter. Jika tangki diisi penuh, berapa liter air yang tertampung?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 4: Mencari Tinggi</p>
+    <p>Sebuah wadah berbentuk tabung memiliki volume 1.540 cm³ dan jari-jari alas 7 cm. Berapakah tinggi wadah tersebut?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 5: Luas Tanpa Tutup</p>
+    <p>Sebuah ember berbentuk tabung tanpa tutup memiliki jari-jari 14 cm dan tinggi 30 cm. Berapakah luas bahan plastik yang dibutuhkan?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 6: Perbandingan Jari-jari</p>
+    <p>Dua buah tabung memiliki tinggi yang sama. Jika jari-jari tabung A dua kali jari-jari tabung B, berapakah perbandingan volume tabung A dan B?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 7: Menentukan Diameter</p>
+    <p>Sebuah tangki minyak berbentuk tabung memiliki volume 628 liter dan tinggi 2 meter. Berapakah diameter tangki tersebut? (Gunakan π ≈ 3,14).</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 8: Jaring-jaring Tabung</p>
+    <p>Jika selimut tabung dibuka menjadi persegi panjang, panjangnya adalah 44 cm dan lebarnya 10 cm. Tentukan jari-jari alas tabung tersebut!</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 9: Perubahan Tinggi</p>
+    <p>Volume sebuah tabung adalah 500 cm³. Jika tinggi tabung tersebut diperbesar menjadi 2 kali lipat tanpa mengubah jari-jari, berapakah volumenya sekarang?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+    <p class="text-biru">Soal 10: Pengisian Air</p>
+    <p>Sebuah bak tabung (diameter 70 cm, tinggi 1 m) diisi air dengan debit 11 liter/menit. Berapa menit waktu yang dibutuhkan untuk mengisi bak hingga penuh?</p>
+    <button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+    <div id="aiModal" class="ai-modal">
+        <div class="modal-content">
+            <h3 style="color:#b91c1c; margin-top:0;">📋 Prompt untuk Gemini</h3>
+            <div id="promptText" style="background:#f8fafc; border:1px solid #e2e8f0; padding:15px; border-radius:10px; max-height:300px; overflow:auto; white-space:pre-wrap; font-size:14px; line-height:1.5; color:#1e2937;"></div>
+            <div style="margin-top:15px; text-align:center;">
+                <button class="copy-btn" onclick="copyPrompt()">📋 Salin Semua</button>
+                <button class="copy-btn" onclick="openGemini()">🚀 Buka Gemini</button>
+                <button class="close-btn" onclick="closeModal()">❌ Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        KUBIKA © 2026 | Platform Interaktif KUBIKA
+    </footer>
+</div>
+
+<script>
+// ================= GLOBAL =================
+let currentPrompt = "";
+
+// ================= TANYA AI =================
+function tanyaAI(btn) {
+    const soal = btn.parentElement.querySelector("p").innerText;
+
+    // 🔒 SYSTEM PROMPT (ANTI JAWABAN LANGSUNG)
+    const aturan = `PERAN KAMU: Guru matematika SMP yang sabar.
+
+ATURAN WAJIB:
+1. JANGAN PERNAH memberikan jawaban akhir.
+2. HANYA berikan petunjuk (clue) bertahap.
+3. Gunakan pertanyaan pancingan.
+4. Jika siswa meminta jawaban langsung, TOLAK dengan sopan.
+5. Bimbing sampai siswa menemukan sendiri.
+
+FORMAT:
+- Langkah kecil
+- Pertanyaan berpikir
+- Jangan beri hasil akhir
+`;
+
+    // 🔥 PROMPT FINAL
+    currentPrompt = aturan + "\n\nSOAL:\n" + soal;
+
+    // tampilkan ke modal
+    document.getElementById("promptText").textContent = currentPrompt;
+    document.getElementById("aiModal").classList.add("active");
+}
+
+// ================= COPY =================
+function copyPrompt() {
+    const text = currentPrompt;
+
+    // metode aman semua HP
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+        document.execCommand("copy");
+        alert("✅ Prompt berhasil disalin!");
+    } catch (err) {
+        alert("❌ Gagal menyalin. Silakan copy manual.");
+    }
+
+    document.body.removeChild(textarea);
+}
+
+// ================= OPEN GEMINI =================
+function openGemini() {
+    const text = currentPrompt;
+
+    // auto copy dulu
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+        document.execCommand("copy");
+        alert("📋 Prompt sudah disalin!\nTempel di Gemini ya 👍");
+    } catch (err) {
+        alert("❌ Gagal auto copy.\nSilakan salin manual.");
+    }
+
+    document.body.removeChild(textarea);
+
+    // buka Gemini (AMAN HP)
+    window.location.href = "https://gemini.google.com";
+}
+
+// ================= MODAL =================
+function closeModal() {
+    document.getElementById("aiModal").classList.remove("active");
+}
+
+// ================= UX HP TOUCH =================
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".copy-btn, .btn-ai").forEach(btn => {
+        btn.addEventListener("touchstart", () => {
+            btn.style.opacity = "0.6";
+        });
+        btn.addEventListener("touchend", () => {
+            btn.style.opacity = "1";
+        });
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏠 BALOK - KUBIKA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<style>
+/* ========================================
+   CSS BALOK GEOSMART - TEMA TERANG
+   Disesuaikan dengan tema Kartu Dashboard (light / amber-red)
+======================================== */
+
+/* BASE RESET & TYPOGRAPHY */
+* {
+    box-sizing: border-box;
+    font-family: 'Urbanist', 'Segoe UI', Tahoma, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(rgba(255, 255, 255, .93), rgba(240, 249, 255, .93)),
+    url('assets/images/background1.png') center/cover fixed;
+    background-color: #f0f9ff;
+    color: #1e2937;
+    overflow-x: hidden;
+}
+
+/* NAVBAR & HEADER */
+.navbar, header {
+    background: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+    border-bottom: 1px solid #fde68a;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar.fixed-top { position: fixed; }
+.brand, header h1 { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-weight: 800; 
+    font-size: 20px; 
+    color: #b91c1c; 
+    text-decoration: none; 
+    margin: 0;
+    letter-spacing: 1px;
+}
+.btn-back, .back-btn {
+    color: #b45309; 
+    text-decoration: none; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 8px 16px; 
+    border-radius: 10px; 
+    background: #fefce8; 
+    transition: 0.3s; 
+    border: 1px solid #fde047;
+}
+.btn-back:hover, .back-btn:hover { 
+    background: #fef3c7; 
+    transform: translateX(-5px); 
+}
+
+/* LAYOUT */
+.main-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 90px 15px 40px;
+    min-height: 100vh;
+}
+.hero { min-height: 100vh; padding: 90px 15px 40px; }
+
+/* SECTION & CARDS */
+.section {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 12px 25px rgba(15, 23, 42, 0.06);
+}
+h1, h2 { 
+    font-weight: 800; 
+    color: #b91c1c;
+}
+h1 { font-size: 2.8rem; }
+h2 { font-size: 1.8rem; margin-top: 0; }
+h4, h5, h6 { color: #b45309; }
+
+/* 3D MODEL VIEWER */
+.viewer-box, .geo-box {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+model-viewer {
+    width: 100%;
+    height: 450px;
+    background: radial-gradient(circle, #ffffff, #f1f5f9);
+    border-radius: 12px;
+    outline: none;
+}
+
+/* TAB SYSTEM */
+.tab-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.tab-menu button {
+    background: #f8fafc;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 14px;
+}
+.tab-menu button:hover { 
+    border-color: #f59e0b; 
+    color: #b45309; 
+    transform: translateY(-2px);
+}
+.tab-menu button.active {
+    background: #f59e0b;
+    color: #ffffff;
+    border-color: #f59e0b;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+}
+
+/* TAB CONTENT */
+.tab-content { display: none; }
+.tab-content.active { 
+    display: block; 
+    animation: fadeIn 0.5s ease; 
+}
+
+/* GEOGEBRA IFRAME */
+.geo-box .iframe-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 65%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+.geo-box .iframe-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+}
+
+/* FORMULA & PROPERTY CARDS */
+.formula-card, .property-card {
+    background: #fefce8;
+    text-align: center;
+    height: 100%;
+    border: 1px solid #fde68a;
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.3s;
+}
+.formula-card:hover, .property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(245, 158, 11, 0.15);
+}
+.example-box {
+    background: #fff7ed;
+    border-left: 4px solid #f59e0b;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+.step-list { padding-left: 20px; color: #475569; }
+
+/* CONTOH SOAL INTERAKTIF */
+.soal-card {
+    background: #ffffff;
+    border: 2px solid #bfdbfe;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.soal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+    border-color: #60a5fa;
+}
+.soal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #ef4444, #10b981, #f59e0b);
+    background-size: 300% 100%;
+    animation: gradient 2s ease infinite;
+}
+@keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+.soal-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: #eff6ff;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b45309;
+}
+.jawaban-box {
+    background: rgba(16, 185, 129, 0.08) !important;
+    border-left-color: #10b981 !important;
+    border: 2px solid #10b981 !important;
+    border-radius: 12px;
+}
+.soal-title { color: #b45309; font-weight: 800; }
+.soal-text { font-size: 1.1rem; line-height: 1.6; color: #1e2937; }
+
+/* SMP FRIENDLY CLASSES */
+.smp-easy { line-height: 1.8; font-size: 1.1rem; color: #334155; }
+.smp-bold { font-weight: 700; color: #b45309; }
+.smp-icon { font-size: 1.5rem; }
+
+/* AI BUTTONS */
+.ai-mini-btn, .btn-info {
+    background: linear-gradient(45deg, #f59e0b, #ea580c) !important;
+    border: none !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    margin-top: 10px !important;
+    transition: 0.3s !important;
+    font-weight: 600 !important;
+}
+.ai-mini-btn:hover, .btn-info:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 20px rgba(245,158,11,0.35) !important;
+}
+
+/* IMAGES */
+.img-jaring, .img-world-real {
+    max-width: 100%;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #f8fafc;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+.img-jaring:hover, .img-world-real:hover { transform: scale(1.02); }
+.img-world-real {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+.img-world-real:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* TABLE */
+.table-dark, .table-dark th, .table-dark td {
+    background: #ffffff !important;
+    color: #1e2937 !important;
+}
+.table-dark th {
+    border-top: none;
+    background: #fef3c7 !important;
+    border-bottom: 2px solid #f59e0b;
+    font-weight: 700;
+}
+.table-dark td {
+    border-color: #e2e8f0 !important;
+    vertical-align: middle;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   LIGHT THEME OVERRIDES (Bootstrap utility classes reused in body)
+================================ */
+.text-white, .text-light { color: #1e2937 !important; }
+.bg-dark {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0;
+    color: #1e2937 !important;
+}
+.text-info { color: #2563eb !important; }
+.text-warning { color: #b45309 !important; }
+.text-success { color: #059669 !important; }
+.text-danger { color: #dc2626 !important; }
+
+.border-info { border-color: #93c5fd !important; }
+.border-warning { border-color: #fcd34d !important; }
+.border-danger { border-color: #fca5a5 !important; }
+
+.btn-outline-info {
+    color: #2563eb !important;
+    border-color: #93c5fd !important;
+    background: #ffffff !important;
+}
+.btn-outline-info:hover {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+}
+.btn-outline-warning {
+    color: #b45309 !important;
+    border-color: #fcd34d !important;
+    background: #ffffff !important;
+}
+.btn-outline-warning:hover {
+    background: #f59e0b !important;
+    color: #ffffff !important;
+    border-color: #f59e0b !important;
+}
+.btn-warning {
+    background: #f59e0b !important;
+    border-color: #f59e0b !important;
+    color: #ffffff !important;
+}
+.btn-warning:hover {
+    background: #d97706 !important;
+    border-color: #d97706 !important;
+}
+
+.alert-info {
+    background: #eff6ff !important;
+    color: #1e3a8a !important;
+    border-color: #bfdbfe !important;
+}
+.alert-warning {
+    background: #fffbeb !important;
+    color: #78350f !important;
+    border-color: #fde68a !important;
+}
+
+.form-control {
+    background: #ffffff !important;
+    color: #1e2937 !important;
+    border-color: #93c5fd !important;
+}
+.form-control::placeholder { color: #94a3b8 !important; }
+
+.bg-success.bg-opacity-25 { background-color: rgba(16, 185, 129, 0.12) !important; }
+.bg-warning.bg-opacity-25 { background-color: rgba(245, 158, 11, 0.15) !important; }
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    model-viewer { height: 320px; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.4rem; }
+    .tab-menu button {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    .iframe-wrapper { padding-bottom: 75%; }
+    .soal-number {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    header h1, .brand { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="baloklp.html" class="back-btn">⬅ Kembali</a>
+    <h1>🧊 Balok - KUBIKA</h1>
+</header>
+
+<div class="main-container">
+
+    <!-- PRATINJAU 3D -->
+    <div class="section">
+        <h2>Visualisasi 3D </h2>
+        <div class="viewer-box">
+            <model-viewer 
+                src="assets/images/bangunruang/balok.glb"
+                camera-controls
+                auto-rotate
+                shadow-intensity="1">
+            </model-viewer>
+        </div>
+    </div>
+
+    <!-- HERO DEFINISI & SIFAT -->
+    <div class="section">
+        <small class="text-uppercase fw-bold text-warning">Pelajaran Matematika</small>
+        <h1 class="mt-2 text-info">🏠 BALOK - Kotak Panjang!</h1>
+        
+        <h4 class="text-warning mb-3">
+            <i class="fa-solid fa-circle-info smp-icon"></i> 
+            <span class="smp-bold">Apa itu Balok?</span>
+        </h4>
+        <p class="smp-easy">
+            <b>Balok</b> adalah <span class="smp-bold">kotak panjang</span> yang punya <b>6 sisi persegi panjang</b>. 
+            Ada <b>3 pasang sisi sama besar</b>. Balok beda sama kubus karena:
+            <ul class="mt-3 smp-easy">
+                <li><b>Kubus:</b> Semua sisi sama panjang</li>
+                <li><b>Balok:</b> Panjang (p), Lebar (l), Tinggi (t) <b>bisa beda-beda</b></li>
+            </ul>
+        </p>
+        <button class="ai-mini-btn" onclick="tanyaGemini('pengertian')">
+            ✨ Tanya Gemini
+        </button>
+
+        <!-- SIFAT -->
+        <div class="section mt-4">
+            <h2 class="text-info mb-4">
+                <i class="fa-solid fa-list-check smp-icon"></i> 
+                <span class="smp-bold">Ciri-ciri Balok</span>
+            </h2>
+            <ul class="text-light smp-easy">
+                <li>Sisi berhadapan <b>sama besar & sejajar</b></li>
+                <li>Garis panjang yang sejajar <b>sama panjangnya</b></li>
+                <li>Garis miring di sisi sama <b>panjangnya sama</b></li>
+                <li>4 garis miring panjang <b>bertemu di tengah</b></li>
+            </ul>
+        </div>
+        <button class="btn btn-sm btn-info mt-2" onclick="tanyaGemini('ciri')">
+            🤖 Tanya ke Gemini
+        </button>
+
+        <!-- PROPERTY -->
+        <div class="row g-3 mt-3">
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-check-double text-success smp-icon"></i>
+                    <span class="ms-2 smp-easy">6 sisi persegi panjang</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-check-double text-success smp-icon"></i>
+                    <span class="ms-2 smp-easy">Garis sejajar sama panjang</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-check-double text-success smp-icon"></i>
+                    <span class="ms-2 smp-easy">8 sudut 90° lurus</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-check-double text-success smp-icon"></i>
+                    <span class="ms-2 smp-easy">4 garis miring panjang sama</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNSUR -->
+    <div class="section">
+        <h4 class="text-warning mb-3">
+            <i class="fa-solid fa-cube smp-icon"></i> 
+            <span class="smp-bold">Bagian-bagian Balok</span>
+        </h4>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-square text-info smp-icon"></i>
+                    <b class="ms-2">Sisi</b>
+                    <p class="small mt-2 mb-0 smp-easy">6 sisi persegi panjang, 3 pasang sama besar</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-minus text-info smp-icon"></i>
+                    <b class="ms-2">Garis (Rusuk)</b>
+                    <p class="small mt-2 mb-0 smp-easy">12 garis: 4P + 4L + 4T</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-circle-dot text-info smp-icon"></i>
+                    <b class="ms-2">Sudut</b>
+                    <p class="small mt-2 mb-0 smp-easy">8 sudut, ketemu 3 garis</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-slash text-info smp-icon"></i>
+                    <b class="ms-2">Garis Miring Sisi</b>
+                    <p class="small mt-2 mb-0 smp-easy">12 garis miring di sisi</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-arrows-up-down-left-right text-info smp-icon"></i>
+                    <b class="ms-2">Garis Miring Panjang</b>
+                    <p class="small mt-2 mb-0 smp-easy">4 garis tembus balok</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="property-card">
+                    <i class="fa-solid fa-vector-square text-info smp-icon"></i>
+                    <b class="ms-2">Bidang Miring</b>
+                    <p class="small mt-2 mb-0 smp-easy">6 bidang miring tebal</p>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-sm btn-info mt-3" onclick="tanyaGemini('unsur')">
+            🤖 Tanya Unsur ke Gemini
+        </button>
+    </div>
+
+    <!-- GEOGEBRA EXPLORATION -->
+    <div class="section">
+        <h2>Eksplorasi Unsur & Jaring-Jaring</h2>
+
+        <div class="tab-menu">
+            <button class="active" onclick="openTab(this,'sisi')">Sisi</button>
+            <button onclick="openTab(this,'rusuk')">Rusuk</button>
+            <button onclick="openTab(this,'dbidang')">Diagonal Bidang</button>
+            <button onclick="openTab(this,'druang')">Diagonal Ruang</button>
+            <button onclick="openTab(this,'bdiag')">Bidang Diagonal</button>
+            <button onclick="openTab(this,'jaring')">Jaring-Jaring</button>
+        </div>
+
+        <div class="geo-box">
+            <!-- URL ditambahkan parameter allowUpscale=true & ditambahi resolusi manual -->
+            <div id="sisi" class="tab-content active">
+                <div class="iframe-wrapper">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/k4mued6m/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                </div>
+                <h5 class="text-warning">🧠 Aktivitas 1: Analisis Sisi</h5>
+                <p>Setelah mengamati gambar di atas, menurut Anda apa yang dimaksud dengan sisi balok?</p>
+                <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
+                
+                <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
+                <p>Berapakah jumlah bidang sisi yang membatasi sebuah balok?</p>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi', '6 Sisi', this)">4 Sisi</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi', '6 Sisi', this)">6 Sisi</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi', '6 Sisi', this)">8 Sisi</button>
+                <div id="res-sisi" class="mt-2 fw-bold"></div>
+            </div>
+
+            <div id="rusuk" class="tab-content">
+                <div class="iframe-wrapper">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/mp4hwk8r/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                </div>
+                <h5 class="text-warning">🧠 Aktivitas 1: Analisis Rusuk</h5>
+                <p>Apa perbedaan antara rusuk dengan sisi menurut pengamatanmu?</p>
+                <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
+                
+                <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
+                <p>Berapakah total seluruh rusuk (garis kerangka) pada balok?</p>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk', '12 Rusuk', this)">8 Rusuk</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk', '12 Rusuk', this)">10 Rusuk</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk', '12 Rusuk', this)">12 Rusuk</button>
+                <div id="res-rusuk" class="mt-2 fw-bold"></div>
+            </div>
+
+            <div id="dbidang" class="tab-content">
+                <div class="iframe-wrapper">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/w4kqvtty/width/1000/height/650/allowUpscale=true/rc=false/ai/false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                </div>
+                <h5 class="text-warning">🧠 Aktivitas 1: Analisis Diagonal Bidang</h5>
+                <p>Jelaskan di mana letak garis diagonal bidang pada sebuah sisi balok!</p>
+                <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
+                
+                <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
+                <p>Jika setiap sisi memiliki 2 diagonal bidang, berapa total diagonal bidang pada 6 sisi balok?</p>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('db', '12 Diagonal', this)">6 Diagonal</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('db', '12 Diagonal', this)">12 Diagonal</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('db', '12 Diagonal', this)">24 Diagonal</button>
+                <div id="res-db" class="mt-2 fw-bold"></div>
+            </div>
+
+            <div id="druang" class="tab-content">
+                <div class="iframe-wrapper">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/wxpnps8g/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                </div>
+                <h5 class="text-warning">🧠 Aktivitas 1: Analisis Diagonal Ruang</h5>
+                <p>Apa yang dimaksud dengan garis diagonal ruang?</p>
+                <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
+                
+                <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
+                <p>Berapakah jumlah garis diagonal ruang yang menembus bagian dalam balok?</p>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Garis', this)">2 Garis</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Garis', this)">4 Garis</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Garis', this)">8 Garis</button>
+                <div id="res-dr" class="mt-2 fw-bold"></div>
+            </div>
+
+            <div id="bdiag" class="tab-content">
+                <div class="iframe-wrapper">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/qwtrmqh8/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                </div>
+                <h5 class="text-warning">🧠 Aktivitas 1: Analisis Bidang Diagonal</h5>
+                <p>Menurutmu, mengapa bidang ini disebut bidang diagonal?</p>
+                <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
+                
+                <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
+                <p>Berapakah jumlah bidang diagonal yang dimiliki oleh balok?</p>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('bd2', '6 Bidang', this)">4 Bidang</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('bd2', '6 Bidang', this)">6 Bidang</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('bd2', '6 Bidang', this)">12 Bidang</button>
+                <div id="res-bd2" class="mt-2 fw-bold"></div>
+            </div>
+
+
+            <div id="jaring" class="tab-content">
+                <div class="iframe-wrapper">
+                    <iframe src="https://www.geogebra.org/material/iframe/id/wcpbvkhs/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                </div>
+                         <div class="alert alert-info mb-3">
+            <h6 class="fw-bold"><i class="fa-solid fa-hand-pointer"></i> INSTRUKSI INTERAKTIF:</h6>
+                <ul class="small mb-0">
+                  <li><b>Geser Slider:</b> Gunakan titik cokelat pada garis (p, l, t) untuk mengatur Panjang, Lebar, dan Tinggi balok.</li>
+                  <li><b>Animasi:</b> Geser slider "j" untuk melihat bagaimana jaring-jaring terbuka dan tertutup menjadi balok.</li>
+                </ul>
+         </div>
+
+                <h5 class="text-warning">🧩 Aktivitas Logika 1: Posisi Sisi</h5>
+                <p>Jika sisi <b>EFGH</b> (bagian atas) dijadikan <b>ALAS</b>, manakah sisi yang akan menjadi <b>PENUTUP (ATAS)</b>?</p>
+                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1', 'ABCD', this)">ABCD</button>
+                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1', 'ABCD', this)">ABFE</button>
+                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1', 'ABCD', this)">BCFG</button>
+                <div id="res-jr1" class="mt-2 fw-bold"></div>
+
+                <h5 class="text-warning mt-3">🧩 Aktivitas Logika 2: Sisi Samping</h5>
+                <p>Jika <b>ABCD</b> adalah <b>ALAS</b> dan <b>ABFE</b> adalah sisi <b>DEPAN</b>, mana yang menjadi sisi <b>BELAKANG</b>?</p>
+                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2', 'CDHG', this)">CDHG</button>
+                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2', 'CDHG', this)">ADEH</button>
+                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2', 'CDHG', this)">BCFG</button>
+                <div id="res-jr2" class="mt-2 fw-bold"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RUMUS -->
+    <div class="section border border-warning">
+        <h2 class="text-warning mb-4">
+            <i class="fa-solid fa-square-root-variable smp-icon"></i> 
+            <span class="smp-bold">Rumus + Cara Hitung</span>
+        </h2>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="formula-card">
+                    <h5 class="text-info">Luas Seluruh Sisi (L)</h5>
+                    <div class="py-3">
+                        <span class="fs-4 fw-bold bg-dark p-2 rounded">L = 2 × (pl + pt + lt)</span>
+                    </div>
+                    <div class="text-start mt-3">
+                        <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
+                        <ol class="small step-list smp-easy">
+                            <li>Alas: <b>p × l</b></li>
+                            <li>Depan: <b>p × t</b></li>
+                            <li>Samping: <b>l × t</b></li>
+                            <li>Jumlah × 2</li>
+                        </ol>
+                    </div>
+                    <div class="example-box">
+                        <p class="small mb-1"><b>Contoh:</b> p=5, l=3, t=4</p>
+                        <p class="small font-monospace mb-0">L = 2(15 + 20 + 12) = <b>94 cm²</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="formula-card">
+                    <h5 class="text-info">Isi Kotak (V)</h5>
+                    <div class="py-3">
+                        <span class="fs-3 fw-bold bg-dark p-2 rounded">V = p × l × t</span>
+                    </div>
+                    <div class="text-start mt-3">
+                        <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
+                        <ol class="small step-list smp-easy">
+                            <li>Luas alas: p × l</li>
+                            <li>× tinggi = isi</li>
+                        </ol>
+                    </div>
+                    <div class="example-box">
+                        <p class="small mb-1"><b>Contoh:</b> p=5, l=3, t=2</p>
+                        <p class="small font-monospace mb-0">V = 5 × 3 × 2 = <b>30 cm³</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row g-4 mt-4">
+            <div class="col-md-6">
+                <div class="formula-card">
+                    <h5 class="text-info">Keliling Balok (K)</h5>
+                    <div class="py-3">
+                        <span class="fs-4 fw-bold bg-dark p-2 rounded">K = 4(p + l + t)</span>
+                    </div>
+                    <div class="text-start mt-3">
+                        <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
+                        <ol class="small step-list smp-easy">
+                            <li>Jumlahkan p + l + t</li>
+                            <li>× 4</li>
+                        </ol>
+                    </div>
+                    <div class="example-box">
+                        <p class="small mb-1"><b>Contoh:</b> p=5, l=3, t=4</p>
+                        <p class="small font-monospace mb-0">K = 4(12) = <b>48 cm</b></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="formula-card">
+                    <h5 class="text-info">Garis Miring Panjang (d)</h5>
+                    <div class="py-3">
+                        <span class="fs-4 fw-bold bg-dark p-2 rounded">d = √(p² + l² + t²)</span>
+                    </div>
+                    <div class="text-start mt-3">
+                        <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
+                        <ol class="small step-list smp-easy">
+                            <li>p² + l² + t²</li>
+                            <li>Ambil √ (akar)</li>
+                        </ol>
+                    </div>
+                    <div class="example-box">
+                        <p class="small mb-1"><b>Contoh:</b> p=5, l=3, t=4</p>
+                        <p class="small font-monospace mb-0">d = √(25+9+16) = <b>7,07 cm</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-sm btn-info mt-2" onclick="tanyaGemini('rumus')">
+            🤖 Tanya Rumus ke Gemini
+        </button>
+    </div>
+
+    <!-- CONTOH SOAL INTERAKTIF -->
+    <div class="section border border-danger">
+        <h2 class="text-danger mb-4">
+            <i class="fa-solid fa-clipboard-question smp-icon"></i> 
+            <span class="smp-bold">Latihan Soal Balok - Coba Jawab!</span>
+        </h2>
+        
+        <!-- SOAL 1 -->
+        <div class="soal-card" onclick="toggleJawaban(this)">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="soal-number">1</div>
+                </div>
+                <div class="col">
+                    <h5 class="soal-title mb-2">
+                        <i class="fa-solid fa-box me-2"></i>Kotak Buku
+                    </h5>
+                    <p class="soal-text mb-2">
+                        Sebuah kotak buku berukuran panjang 40 cm, lebar 25 cm, tinggi 15 cm. 
+                        Hitunglah luas seluruh sisi kotak tersebut!
+                    </p>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: L = 2(pl + pt + lt)</small>
+                </div>
+            </div>
+            <div class="jawaban-box mt-3" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
+                        <div class="font-monospace small bg-dark p-3 rounded">
+                            pl = 40 × 25 = 1000<br>
+                            pt = 40 × 15 = 600<br>
+                            lt = 25 × 15 = 375<br>
+                            L = 2(1000 + 600 + 375) = <span class="text-success fw-bold fs-5">3950 cm²</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-success bg-opacity-25 rounded">
+                            <div class="fs-2 fw-bold text-success mb-1">✅ 3950 cm²</div>
+                            <small>Luas cat kotak</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 2 -->
+        <div class="soal-card" onclick="toggleJawaban(this)">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="soal-number">2</div>
+                </div>
+                <div class="col">
+                    <h5 class="soal-title mb-2">
+                        <i class="fa-solid fa-droplet me-2"></i>Kotak Susu
+                    </h5>
+                    <p class="soal-text mb-2">
+                        Kotak susu UHT berukuran p=8 cm, l=6 cm, t=20 cm. 
+                        Berapa liter susu yang muat dalam kotak tersebut?
+                    </p>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: V = p × l × t (1 liter = 1000 cm³)</small>
+                </div>
+            </div>
+            <div class="jawaban-box mt-3" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
+                        <div class="font-monospace small bg-dark p-3 rounded">
+                            V = 8 × 6 × 20 = 960 cm³<br>
+                            960 ÷ 1000 = <span class="text-success fw-bold fs-5">0,96 liter</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-success bg-opacity-25 rounded">
+                            <div class="fs-2 fw-bold text-success mb-1">✅ 0,96 liter</div>
+                            <small>Muat hampir 1 liter!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 3 -->
+        <div class="soal-card" onclick="toggleJawaban(this)">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="soal-number">3</div>
+                </div>
+                <div class="col">
+                    <h5 class="soal-title mb-2">
+                        <i class="fa-solid fa-home me-2"></i>Batu Bata
+                    </h5>
+                    <p class="soal-text mb-2">
+                        Sebuah batu bata berukuran 22 cm × 10 cm × 5 cm. 
+                        Berapa keliling rangka 1 buah bata?
+                    </p>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: K = 4(p + l + t)</small>
+                </div>
+            </div>
+            <div class="jawaban-box mt-3" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
+                        <div class="font-monospace small bg-dark p-3 rounded">
+                            p + l + t = 22 + 10 + 5 = 37<br>
+                            K = 4 × 37 = <span class="text-success fw-bold fs-5">148 cm</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-success bg-opacity-25 rounded">
+                            <div class="fs-2 fw-bold text-success mb-1">✅ 148 cm</div>
+                            <small>Panjang kawat rangka</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 4 -->
+        <div class="soal-card" onclick="toggleJawaban(this)">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="soal-number">4</div>
+                </div>
+                <div class="col">
+                    <h5 class="soal-title mb-2">
+                        <i class="fa-solid fa-ruler-combined me-2"></i>Garis Miring
+                    </h5>
+                    <p class="soal-text mb-2">
+                        Balok kayu ukuran 30 cm × 20 cm × 10 cm. 
+                        Berapa panjang garis miring ruang (dari 1 sudut ke sudut berlawanan)?
+                    </p>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: d = √(p² + l² + t²)</small>
+                </div>
+            </div>
+            <div class="jawaban-box mt-3" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
+                        <div class="font-monospace small bg-dark p-3 rounded">
+                            p² + l² + t² = 900 + 400 + 100 = 1400<br>
+                            d = √1400 ≈ <span class="text-success fw-bold fs-5">37,42 cm</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-success bg-opacity-25 rounded">
+                            <div class="fs-2 fw-bold text-success mb-1">✅ 37,42 cm</div>
+                            <small>Panjang tembus balok</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOAL 5 - BONUS -->
+        <div class="soal-card border-warning" onclick="toggleJawaban(this)">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="soal-number text-warning">★</div>
+                </div>
+                <div class="col">
+                    <h5 class="soal-title mb-2 text-warning">
+                        <i class="fa-solid fa-star me-2"></i>Lemari Baju
+                    </h5>
+                    <p class="soal-text mb-2">
+                        Lemari baju: p=120 cm, l=60 cm, t=200 cm. 
+                        Pak Joko mau cat seluruh lemari. Berapa cm² cat yang dibutuhkan?
+                    </p>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus lengkap L = 2(pl + pt + lt)</small>
+                </div>
+            </div>
+            <div class="jawaban-box mt-3" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-warning mb-2"><i class="fa-solid fa-star me-2"></i>Penyelesaian:</h6>
+                        <div class="font-monospace small bg-warning bg-opacity-25 p-3 rounded border-warning">
+                            pl = 120 × 60 = 7200<br>
+                            pt = 120 × 200 = 24000<br>
+                            lt = 60 × 200 = 12000<br>
+                            L = 2(7200 + 24000 + 12000) = <span class="text-warning fw-bold fs-5">86.400 cm²</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center p-3 bg-warning bg-opacity-25 rounded border-warning">
+                            <div class="fs-2 fw-bold text-warning mb-1">✅ 86.400 cm²</div>
+                            <small class="text-dark fw-bold">= 8,64 m² cat!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-warning mt-3" onclick="tanyaGemini('latihan')">
+            🧠 Minta Soal Baru dari Gemini
+        </button>
+    </div>
+
+    <!-- DUNIA NYATA -->
+    <div class="section">
+        <h2 class="text-success mb-3">
+            <i class="fa-solid fa-box-open smp-icon"></i> 
+            <span class="smp-bold">Balok di Sekitar Kita!</span>
+        </h2>
+
+        <!-- PENJELASAN -->
+        <p class="smp-easy">
+            Dalam kehidupan sehari-hari, banyak benda di sekitar kita yang berbentuk <b>balok</b>, 
+            seperti lemari, buku, kotak susu, dan batu bata.
+        </p>
+
+        <p class="smp-easy">
+            Dengan memahami balok, kita bisa menghitung:
+        </p>
+
+        <ul class="smp-easy">
+            <li><b>Luas permukaan</b> → untuk mengetahui jumlah bahan (misalnya cat atau kertas pembungkus)</li>
+            <li><b>Volume</b> → untuk mengetahui kapasitas isi suatu benda</li>
+            <li><b>Keliling rangka</b> → untuk menghitung panjang bahan seperti kayu atau besi</li>
+        </ul>
+
+        <!-- TUJUAN -->
+        <div class="alert alert-info mt-3 smp-easy">
+            <b>Tujuan pembelajaran:</b><br>
+            Setelah mempelajari bagian ini, kamu dapat:
+            <ul class="mb-0">
+                <li>Mengenali benda berbentuk balok di sekitar</li>
+                <li>Menggunakan rumus balok dalam kehidupan nyata</li>
+                <li>Memahami manfaat matematika dalam kehidupan sehari-hari</li>
+            </ul>
+        </div>
+
+        <!-- CONTOH UTAMA: LEMARI -->
+        <div class="row align-items-center g-4 mt-4 mb-5">
+            <div class="col-lg-4 text-center">
+                <div class="geo-box p-4 h-100">
+                    <img src="assets/images/lemari.png"
+                         class="img-fluid rounded img-world-real"
+                         style="max-height:200px;"
+                         alt="Lemari">
+                    <h5 class="text-warning fw-bold">🏠 Lemari Baju, Akuarium, Kardus</h5>
+                    <small class="text-info">p=180 cm, l=60 cm, t=200 cm</small>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="property-card p-4">
+                    <h6 class="text-success mb-3">
+                        <i class="fa-solid fa-calculator me-2"></i>
+                        Contoh Penerapan
+                    </h6>
+
+                    <p class="smp-easy">
+                        Lemari berbentuk balok. Kita bisa menghitung kebutuhan nyata:
+                    </p>
+
+                    <ul class="smp-easy">
+                        <li>Cat untuk melapisi permukaan lemari</li>
+                        <li>Kapasitas ruang untuk menyimpan barang</li>
+                        <li>Panjang bahan rangka lemari</li>
+                    </ul>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-4">
+                            <div class="text-center bg-dark p-3 rounded">
+                                <div class="fs-5 fw-bold text-info">117.600 cm²</div>
+                                <small>Luas permukaan (cat)</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center bg-dark p-3 rounded">
+                                <div class="fs-5 fw-bold text-warning">2.160.000 cm³</div>
+                                <small>Volume (kapasitas)</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center bg-dark p-3 rounded">
+                                <div class="fs-5 fw-bold text-danger">1.760 cm</div>
+                                <small>Panjang rangka</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-box mt-3">
+                        <small>
+                            💡 Artinya: untuk membuat lemari ini, kita bisa memperkirakan jumlah cat, 
+                            kapasitas penyimpanan, dan bahan yang dibutuhkan menggunakan matematika.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTOH LAIN -->
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="geo-box text-center p-3 h-100">
+                    <h6 class="text-warning">🥛 Kotak Susu</h6>
+                    <small>p=7, l=7, t=24</small>
+                    <div class="mt-2 small">
+                        Volume = 1176 cm³ ≈ 1,17 liter
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="geo-box text-center p-3 h-100">
+                    <h6 class="text-warning">🧱 Batu Bata</h6>
+                    <small>p=23, l=11, t=6</small>
+                    <div class="mt-2 small">
+                        Digunakan untuk membangun rumah
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="geo-box text-center p-3 h-100">
+                    <h6 class="text-warning">📱 HP</h6>
+                    <small>p=15, l=7, t=0,8</small>
+                    <div class="mt-2 small">
+                        Volume ≈ 84 cm³
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="geo-box text-center p-3 h-100">
+                    <h6 class="text-warning">📚 Buku</h6>
+                    <small>p=21, l=15, t=2</small>
+                    <div class="mt-2 small">
+                        Volume = 630 cm³
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERTANYAAN INTERAKTIF -->
+        <div class="alert alert-warning mt-4 smp-easy">
+            <b>Yuk berpikir!</b><br>
+            Jika kamu punya kotak sepatu berbentuk balok, 
+            bagaimana cara menghitung berapa banyak barang yang bisa dimasukkan ke dalamnya?
+        </div>
+        <div class="text-center mt-4">
+            <button class="btn btn-info" onclick="tanyaGemini('dunia')">
+                🤖 Tanya AI tentang Balok di Sekitar Kita
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // TAB GEOGEBRA FUNCTION (dari file pertama)
+    function openTab(btn, id) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    // TOGGLE JAWABAN SOAL (dari file kedua)
+    function toggleJawaban(card) {
+        const jawaban = card.querySelector('.jawaban-box');
+        if (jawaban.style.display === 'none' || jawaban.style.display === '') {
+            jawaban.style.display = 'block';
+            jawaban.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+            jawaban.style.display = 'none';
+        }
+    }
+
+    // TANYA GEMINI AI (dari file kedua - sudah BALOK)
+    function tanyaGemini(mode) {
+        let pesan = "";
+
+        if (mode === "pengertian") {
+            pesan = `Saya siswa SMP. Jelaskan pengertian balok dengan bahasa sangat sederhana seperti guru.
+Gunakan contoh benda sehari-hari agar mudah dipahami.`;
+        } 
+
+        else if (mode === "ciri") {
+            pesan = `Saya siswa SMP. Jelaskan ciri-ciri balok dengan cara mudah diingat.
+Gunakan poin-poin sederhana dan contoh benda nyata.`;
+        } 
+
+        else if (mode === "unsur") {
+            pesan = `Saya siswa SMP. Jelaskan unsur-unsur balok (sisi, rusuk, sudut, diagonal).
+Bantu saya membayangkan bentuknya dengan penjelasan sederhana.`;
+        } 
+
+        else if (mode === "rumus") {
+            pesan = `Saya siswa SMP. Jelaskan rumus balok (luas permukaan dan volume) secara pelan-pelan.
+Berikan:
+1. Arti simbol (p, l, t)
+2. Cara menghitung
+3. Contoh soal
+4. Pembahasan bertahap`;
+        } 
+
+        else if (mode === "latihan") {
+            pesan = `Saya siswa SMP. Berikan 1 soal tentang balok.
+Jangan langsung beri jawaban, tapi beri petunjuk (clue) langkah demi langkah.
+Setelah itu baru beri pembahasan lengkap.`;
+        } 
+
+        else if (mode === "jaring") {
+            pesan = `Saya siswa SMP. Tolong jelaskan jaring-jaring balok seperti guru mengajar di kelas.
+Gunakan:
+- bahasa sederhana
+- analogi (misalnya kardus dibuka)
+- langkah membayangkan
+- 1 pertanyaan kecil untuk saya jawab`;
+        } 
+
+        else if (mode === "dunia") {
+            pesan = `Saya siswa SMP. Jelaskan contoh balok dalam kehidupan sehari-hari dengan cara sederhana.
+Gunakan:
+- contoh nyata
+- penjelasan mudah dipahami
+- kaitkan dengan volume dan luas
+- beri 1 pertanyaan latihan`;
+        }
+
+        // ⛔ kalau mode tidak ditemukan
+        if (pesan === "") {
+            alert("Mode tidak dikenali!");
+            return;
+        }
+
+        // COPY ke clipboard
+        navigator.clipboard.writeText(pesan).catch(()=>{});
+
+        // Buka Gemini
+        const url = `https://gemini.google.com/app?q=${encodeURIComponent(pesan)}`;
+        window.open(url, "_blank");
+    }
+</script>
+
+</body>
+</html>

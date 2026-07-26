@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kuis Balok Modern</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Urbanist', 'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+
+    background:
+    linear-gradient(rgba(255, 255, 255, .93), rgba(240, 249, 255, .93)),
+    url('assets/images/background1.png');
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-color:#f0f9ff;
+
+    color:#1e2937;
+}
+
+.container{
+    width:95%;
+    max-width:1200px;
+    height:95vh;
+
+    margin:auto;
+    padding:15px 0;
+
+    display:flex;
+    gap:15px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+
+    padding:15px;
+}
+
+.sidebar-header{
+    background:#f59e0b;
+
+    color:white;
+
+    text-align:center;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+}
+
+.stats{
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:15px;
+}
+
+.stat{
+    text-align:center;
+}
+
+.stat-number{
+    font-size:22px;
+    font-weight:700;
+    color:#b91c1c;
+}
+
+.stat-label{
+    font-size:12px;
+    color:#64748b;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.num{
+    height:50px;
+
+    border-radius:10px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:600;
+    color:#1e2937;
+
+    transition:.3s;
+}
+
+.num:hover{
+    background:#fefce8;
+    border-color:#f59e0b;
+}
+
+.num.active{
+    background:#f59e0b;
+    color:white;
+    border-color:#f59e0b;
+}
+
+.num.done{
+    background:#14b8a6;
+    color:white;
+    border-color:#14b8a6;
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    border:1px solid #e2e8f0;
+
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+
+    padding:20px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+}
+
+.timer{
+    background:#ef4444;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+    font-weight:700;
+}
+
+.badge{
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    color:#1e2937;
+
+    padding:8px 15px;
+
+    border-radius:25px;
+
+    font-size:14px;
+}
+
+/* PROGRESS */
+
+.progress{
+    height:8px;
+
+    background:#f1f5f9;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin-bottom:20px;
+}
+
+.progress-bar{
+    width:10%;
+    height:100%;
+
+    background:#f59e0b;
+
+    transition:.4s;
+}
+
+/* QUESTION */
+
+.question{
+    font-size:22px;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+    line-height:1.5;
+
+    color:#1e2937;
+}
+
+/* OPSI */
+
+.btn{
+    width:100%;
+
+    padding:12px 15px;
+
+    margin-bottom:8px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    color:#1e2937;
+
+    text-align:left;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#fefce8;
+    border-color:#f59e0b;
+}
+
+.btn.selected{
+    background:#f59e0b;
+    border-color:#f59e0b;
+    color:white;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:auto;
+
+    display:flex;
+    justify-content:space-between;
+}
+
+.back{
+    padding:10px 20px;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:25px;
+
+    background:#ffffff;
+
+    color:#64748b;
+
+    cursor:pointer;
+}
+
+.back:hover{
+    border-color:#f59e0b;
+    color:#b91c1c;
+}
+
+.next{
+    padding:10px 20px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:#f59e0b;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+.next:hover{
+    background:#d97706;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    body{
+        overflow:auto;
+    }
+
+    .container{
+        flex-direction:column;
+        height:auto;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+}
+.dashboard-btn{
+
+    text-decoration:none;
+
+    background:#f59e0b;
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:25px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.dashboard-btn:hover{
+
+    background:#d97706;
+
+    transform:translateY(-2px);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-header">
+            📋 Daftar Soal
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <div class="stat-number" id="selesai">0</div>
+                <div class="stat-label">Selesai</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number" id="pengerjaan">1</div>
+                <div class="stat-label">Pengerjaan</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Total</div>
+            </div>
+
+        </div>
+
+        <div class="grid" id="grid"></div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+<div class="topbar">
+
+    <div style="display:flex;gap:10px;align-items:center;">
+
+        <a href="baloklp.html" class="dashboard-btn">
+            Kembali
+        </a>
+
+        <div class="timer" id="timer">
+            ⏰ 10:00
+        </div>
+
+    </div>
+
+    <div class="badge" id="badge">
+        Soal 1/10
+    </div>
+
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="question" id="q">
+            Loading...
+        </div>
+
+        <div id="opsi"></div>
+
+        <div class="footer">
+
+            <button class="back" onclick="prev()">
+                ← Kembali
+            </button>
+
+            <button class="next" onclick="next()">
+                Lanjut →
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const TOTAL = 1000;
+const JUMLAH_SOAL = 10;
+
+let used = JSON.parse(localStorage.getItem("used")) || [];
+
+let soal = [];
+let idx = 0;
+let jawaban = {};
+
+
+// ======================
+// GENERATOR SOAL
+// ======================
+
+function gen(id){
+
+    let tipe = id % 4;
+
+    let benar;
+    let opsi;
+    let q;
+
+    if(tipe === 0){
+
+        let p = (id % 20) + 5;
+        let l = (id % 15) + 3;
+        let t = (id % 10) + 2;
+
+        benar = p*l*t;
+
+        q =
+        `Volume balok dengan panjang ${p} cm,
+        lebar ${l} cm dan tinggi ${t} cm adalah ...`;
+
+    }
+
+    else if(tipe === 1){
+
+        let p = (id % 20)+5;
+        let l = (id % 10)+2;
+
+        benar = p*l;
+
+        q =
+        `Luas alas balok dengan panjang ${p} cm
+        dan lebar ${l} cm adalah ...`;
+
+    }
+
+    else if(tipe === 2){
+
+        let p = (id % 20)+5;
+        let l = (id % 15)+5;
+        let t = (id % 10)+5;
+
+        benar =
+        2*((p*l)+(p*t)+(l*t));
+
+        q =
+        `Luas permukaan balok dengan
+        p=${p}, l=${l}, t=${t} adalah ...`;
+
+    }
+
+    else{
+
+        let p = (id % 20)+5;
+        let l = (id % 15)+5;
+        let t = (id % 10)+5;
+
+        benar =
+        4*(p+l+t);
+
+        q =
+        `Jumlah seluruh panjang rusuk balok
+        p=${p}, l=${l}, t=${t} adalah ...`;
+
+    }
+
+    opsi = [
+        benar,
+        benar + 10,
+        benar - 10,
+        benar + 20
+    ];
+
+    opsi.sort(() => Math.random() - 0.5);
+
+    return {
+        q:q,
+        opsi:opsi,
+        benar:opsi.indexOf(benar)
+    };
+
+}
+
+
+// ======================
+// INIT
+// ======================
+
+function init(){
+
+    let temp = [];
+
+    while(temp.length < JUMLAH_SOAL){
+
+        let id =
+        Math.floor(Math.random()*TOTAL);
+
+        if(
+            !used.includes(id) &&
+            !temp.includes(id)
+        ){
+            temp.push(id);
+        }
+
+    }
+
+    soal = temp;
+
+    renderGrid();
+    render();
+}
+
+
+// ======================
+// GRID
+// ======================
+
+function renderGrid(){
+
+    document.getElementById("grid").innerHTML =
+
+    soal.map((_,i)=>{
+
+        let cls = "num";
+
+        if(i===idx)
+            cls += " active";
+
+        else if(jawaban[i] !== undefined)
+            cls += " done";
+
+        return `
+        <div class="${cls}"
+             onclick="go(${i})">
+            ${i+1}
+        </div>
+        `;
+
+    }).join('');
+
+}
+
+
+// ======================
+// RENDER
+// ======================
+
+function render(){
+
+    let data = gen(soal[idx]);
+
+    document.getElementById("q").innerHTML =
+    `${idx+1}. ${data.q}`;
+
+    document.getElementById("opsi").innerHTML =
+
+    data.opsi.map((o,i)=>`
+
+        <button
+        class="btn ${
+            jawaban[idx]===i
+            ? "selected"
+            : ""
+        }"
+        onclick="pilih(${i})">
+
+        ${o}
+
+        </button>
+
+    `).join('');
+
+    updateProgress();
+
+    renderGrid();
+
+}
+
+
+// ======================
+// PILIH
+// ======================
+
+function pilih(i){
+
+    jawaban[idx] = i;
+
+    render();
+
+}
+
+
+// ======================
+// PINDAH SOAL
+// ======================
+
+function go(i){
+
+    idx = i;
+
+    render();
+
+}
+
+
+// ======================
+// NEXT
+// ======================
+
+function next(){
+
+    if(idx < soal.length-1){
+
+        idx++;
+
+        render();
+
+    }
+
+    else{
+
+        finish();
+
+    }
+
+}
+
+
+// ======================
+// PREVIOUS
+// ======================
+
+function prev(){
+
+    if(idx > 0){
+
+        idx--;
+
+        render();
+
+    }
+
+}
+
+
+// ======================
+// PROGRESS
+// ======================
+
+function updateProgress(){
+
+    let persen =
+    ((idx+1)/soal.length)*100;
+
+    let bar =
+    document.getElementById("progressBar");
+
+    if(bar){
+
+        bar.style.width =
+        persen + "%";
+
+    }
+
+    let badge =
+    document.getElementById("badge");
+
+    if(badge){
+
+        badge.innerHTML =
+        `Soal ${idx+1}/${soal.length}`;
+
+    }
+
+}
+
+
+// ======================
+// SKOR
+// ======================
+
+function hitungSkor(){
+
+    let skor = 0;
+
+    soal.forEach((id,i)=>{
+
+        let data = gen(id);
+
+        if(jawaban[i] === data.benar){
+
+            skor++;
+
+        }
+
+    });
+
+    return skor;
+
+}
+
+
+// ======================
+// FINISH
+// ======================
+
+function finish(){
+
+    let skor =
+    hitungSkor();
+
+    used.push(...soal);
+
+    localStorage.setItem(
+        "used",
+        JSON.stringify(used)
+    );
+
+    alert(
+        `Kuis selesai!\n\n`+
+        `Skor : ${skor}/${soal.length}`
+    );
+
+    location.reload();
+
+}
+
+
+// ======================
+// TIMER
+// ======================
+
+let waktu = 600;
+
+setInterval(()=>{
+
+    let timer =
+    document.getElementById("timer");
+
+    if(timer){
+
+        let m =
+        Math.floor(waktu/60);
+
+        let s =
+        waktu%60;
+
+        timer.innerHTML =
+        `⏰ ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+
+    }
+
+    waktu--;
+
+    if(waktu < 0){
+
+        finish();
+
+    }
+
+},1000);
+
+
+// ======================
+// START
+// ======================
+
+init();
+</script>
+
+</body>
+</html>

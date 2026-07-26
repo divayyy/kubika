@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUBIKA| Latihan Balok</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:'Urbanist','Segoe UI',Tahoma,Verdana,sans-serif;
+}
+body{
+    margin:0;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    color:#1e2937;
+    padding:20px;
+}
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+h1,h2{
+    color:#b91c1c;
+}
+.soal{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:16px;
+}
+.soal p{
+    line-height:1.6;
+}
+.btn-ai{
+    margin-top:12px;
+    padding:10px 18px;
+    border-radius:12px;
+    background:#f59e0b;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+.btn-ai:hover{
+    background:#d97706;
+}
+.back-btn{
+    display:inline-block;
+    margin-bottom:20px;
+    padding:10px 20px;
+    border-radius:12px;
+    background:transparent;
+    color:#64748b;
+    text-decoration:none;
+    font-weight:600;
+    border:1px dashed #e2e8f0;
+    transition:.3s;
+}
+.back-btn:hover{
+    border-style:solid;
+    border-color:#f59e0b;
+    color:#b91c1c;
+    background:#fefce8;
+}
+footer{
+    margin-top:40px;
+    text-align:center;
+    font-size:14px;
+    color:#94a3b8;
+}
+.section-title{
+    margin-top:30px;
+    border-left:4px solid #f59e0b;
+    padding-left:10px;
+}
+.ai-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+.ai-modal.active { display: flex; }
+.modal-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    max-width: 90%;
+    max-height: 80%;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
+}
+.copy-btn {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px 5px;
+    transition:.3s;
+}
+.copy-btn:hover {
+    background: #d97706;
+}
+.close-btn {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition:.3s;
+}
+.close-btn:hover {
+    background: #fef2f2;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="dashboardhp.html" class="back-btn">⬅ Kembali</a>
+
+<h1>Latihan Geometri</h1>
+<h2>Materi: Balok</h2>
+
+<p>
+Klik <b>Tanya AI Gemini</b> untuk mendapatkan <b>petunjuk (clue)</b> guna membantu Anda menyelesaikan tantangan di bawah ini.
+</p>
+
+<hr>
+
+<h2 class="section-title">📦 Koleksi Soal Balok</h2>
+
+<div class="soal">
+<p><b>Soal 1: Volume Dasar</b><br>
+Sebuah akuarium berbentuk balok memiliki ukuran panjang 80 cm, lebar 40 cm, dan tinggi 50 cm. Jika akuarium tersebut diisi air hingga penuh, berapakah volume air dalam liter? (Ingat: 1 liter = 1.000 cm³).
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 2: Luas Permukaan (Kontekstual)</b><br>
+Budi ingin membungkus sebuah kotak kado berbentuk balok dengan panjang 20 cm, lebar 10 cm, dan tinggi 5 cm. Berapakah luas minimal kertas kado yang dibutuhkan Budi?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 3: Logika Penerapan (Pengemasan)</b><br>
+Sebuah kardus besar berbentuk balok berukuran 50 cm × 40 cm × 24 cm akan diisi kotak sabun berukuran 5 cm × 4 cm × 8 cm. Berapa maksimal kotak sabun yang dapat dimuat ke dalam kardus besar tersebut?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 4: Tantangan Mencari Dimensi</b><br>
+Sebuah balok memiliki volume 240 cm³. Jika diketahui panjangnya 10 cm dan lebarnya 6 cm, berapakah tinggi balok tersebut?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 5: Kapasitas & Debit</b><br>
+Sebuah bak mandi berbentuk balok memiliki ukuran panjang 1 meter, lebar 80 cm, dan tinggi 60 cm. Bak tersebut diisi air menggunakan keran dengan debit 10 liter/menit. Jika bak dalam keadaan kosong, berapa lama waktu yang dibutuhkan untuk mengisi bak tersebut hingga penuh?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 6: Perubahan Dimensi (Skala)</b><br>
+Sebuah balok mainan memiliki ukuran 4 cm × 3 cm × 2 cm. Jika setiap ukuran sisi balok tersebut diperbesar 3 kali lipat, berapa kali lipat volume balok baru dibandingkan dengan volume balok semula?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 7: Luas Sisi Spesifik</b><br>
+Sebuah bak air tanpa tutup berbentuk balok memiliki panjang 1,2 meter, lebar 80 cm, dan tinggi 50 cm. Berapakah luas permukaan bagian dalam bak air tersebut?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 8: Analisis Jaring-Jaring</b><br>
+Sebuah jaring-jaring balok memiliki ukuran persegi panjang yang berbeda-beda. Jika dua sisi yang berdekatan pada jaring-jaring tersebut memiliki luas 24 cm² dan 15 cm², serta diketahui panjang rusuk yang berhimpit adalah 3 cm, berapakah volume balok tersebut?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 9: Perbandingan Rusuk</b><br>
+Perbandingan panjang, lebar, dan tinggi sebuah balok adalah 4 : 3 : 2. Jika jumlah panjang seluruh rusuk balok tersebut adalah 108 cm, tentukan volume balok tersebut!
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+
+<div class="soal">
+<p><b>Soal 10: Pengurangan Volume (Sisa Air)</b><br>
+Sebuah bak penuh berisi air dengan ukuran 60 cm × 40 cm × 50 cm. Jika air tersebut diambil sebanyak 30 liter, berapa tinggi sisa air di dalam bak tersebut?
+</p>
+<button class="btn-ai" onclick="tanyaAI(this)">Tanya AI Gemini</button>
+</div>
+<div id="aiModal" class="ai-modal">
+    <div class="modal-content">
+        <h3 style="color:#b91c1c; margin-top:0;">📋 Prompt untuk Gemini</h3>
+        <div id="promptText" style="background:#f8fafc; border:1px solid #e2e8f0; padding:15px; border-radius:10px; max-height:300px; overflow:auto; white-space:pre-wrap; font-size:14px; line-height:1.5; color:#1e2937;"></div>
+        <div style="margin-top:15px; text-align:center;">
+            <button class="copy-btn" onclick="copyPrompt()">📋 Salin Semua</button>
+            <button class="copy-btn" onclick="openGemini()">🚀 Buka Gemini</button>
+            <button class="close-btn" onclick="closeModal()">❌ Tutup</button>
+        </div>
+    </div>
+</div>
+<footer>
+KUBIKA © 2026 | Platform Interaktif KUBIKA
+</footer>
+
+</div>
+
+<script>
+// ================= GLOBAL =================
+let currentPrompt = "";
+
+// ================= TANYA AI =================
+function tanyaAI(btn) {
+    const soal = btn.parentElement.querySelector("p").innerText;
+
+    // 🔒 SYSTEM PROMPT (ANTI JAWABAN LANGSUNG)
+    const aturan = `PERAN KAMU: Guru matematika SMP yang sabar.
+
+ATURAN WAJIB:
+1. JANGAN PERNAH memberikan jawaban akhir.
+2. HANYA berikan petunjuk (clue) bertahap.
+3. Gunakan pertanyaan pancingan.
+4. Jika siswa meminta jawaban langsung, TOLAK dengan sopan.
+5. Bimbing sampai siswa menemukan sendiri.
+
+FORMAT:
+- Langkah kecil
+- Pertanyaan berpikir
+- Jangan beri hasil akhir
+`;
+
+    // 🔥 PROMPT FINAL
+    currentPrompt = aturan + "\n\nSOAL:\n" + soal;
+
+    // tampilkan ke modal
+    document.getElementById("promptText").textContent = currentPrompt;
+    document.getElementById("aiModal").classList.add("active");
+}
+
+// ================= COPY =================
+function copyPrompt() {
+    const text = currentPrompt;
+
+    // metode aman semua HP
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+        document.execCommand("copy");
+        alert("✅ Prompt berhasil disalin!");
+    } catch (err) {
+        alert("❌ Gagal menyalin. Silakan copy manual.");
+    }
+
+    document.body.removeChild(textarea);
+}
+
+// ================= OPEN GEMINI =================
+function openGemini() {
+    const text = currentPrompt;
+
+    // auto copy dulu
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+        document.execCommand("copy");
+        alert("📋 Prompt sudah disalin!\nTempel di Gemini ya 👍");
+    } catch (err) {
+        alert("❌ Gagal auto copy.\nSilakan salin manual.");
+    }
+
+    document.body.removeChild(textarea);
+
+    // buka Gemini (AMAN HP)
+    window.location.href = "https://gemini.google.com";
+}
+
+// ================= MODAL =================
+function closeModal() {
+    document.getElementById("aiModal").classList.remove("active");
+}
+
+// ================= UX HP TOUCH =================
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".copy-btn, .btn-ai").forEach(btn => {
+        btn.addEventListener("touchstart", () => {
+            btn.style.opacity = "0.6";
+        });
+        btn.addEventListener("touchend", () => {
+            btn.style.opacity = "1";
+        });
+    });
+});
+</script>
+
+
+</body>
+</html>
