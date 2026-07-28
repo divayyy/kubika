@@ -466,6 +466,20 @@ let soal = [];
 let idx = 0;
 let jawaban = {};
 
+// Cache: data soal (pertanyaan + urutan opsi) hanya dibuat SEKALI per soal,
+// supaya urutan opsi tidak acak ulang setiap kali render() dipanggil.
+let soalDataCache = {};
+
+function getSoalData(i){
+
+    if(soalDataCache[i] === undefined){
+        soalDataCache[i] = gen(soal[i]);
+    }
+
+    return soalDataCache[i];
+
+}
+
 
 // ======================
 // GENERATOR SOAL
@@ -619,7 +633,7 @@ function renderGrid(){
 
 function render(){
 
-    let data = gen(soal[idx]);
+    let data = getSoalData(idx);
 
     document.getElementById("q").innerHTML =
     `${idx+1}. ${data.q}`;
@@ -757,7 +771,7 @@ function hitungSkor(){
 
     soal.forEach((id,i)=>{
 
-        let data = gen(id);
+        let data = getSoalData(i);
 
         if(jawaban[i] === data.benar){
 

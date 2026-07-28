@@ -462,13 +462,16 @@ const JUMLAH_SOAL = 10;
 
 let used = JSON.parse(localStorage.getItem("used")) || [];
 
-let soal = [];
+let soal = [];       // daftar id soal yang dipakai di sesi ini
+let soalData = [];   // 🔥 CACHE hasil generate tiap soal (termasuk urutan opsi TETAP)
 let idx = 0;
 let jawaban = {};
 
 
 // ======================
 // GENERATOR SOAL
+// (murni menghasilkan data acak baru — HANYA
+// boleh dipanggil SEKALI per soal, saat init())
 // ======================
 
 function gen(id){
@@ -578,6 +581,12 @@ function init(){
 
     soal = temp;
 
+    // 🔥 PERBAIKAN UTAMA:
+    // generate & simpan (cache) SETIAP soal HANYA SEKALI di sini,
+    // supaya urutan opsi tidak diacak ulang tiap kali render()
+    // dipanggil (itu penyebab opsi "berpindah" saat dipilih).
+    soalData = soal.map(id => gen(id));
+
     renderGrid();
     render();
 }
@@ -619,7 +628,8 @@ function renderGrid(){
 
 function render(){
 
-    let data = gen(soal[idx]);
+    // 🔥 pakai data yang sudah di-cache, JANGAN panggil gen() lagi di sini
+    let data = soalData[idx];
 
     document.getElementById("q").innerHTML =
     `${idx+1}. ${data.q}`;
@@ -755,9 +765,10 @@ function hitungSkor(){
 
     let skor = 0;
 
-    soal.forEach((id,i)=>{
-
-        let data = gen(id);
+    // 🔥 pakai soalData yang sudah di-cache (bukan gen(id) lagi),
+    // supaya jawaban benar dicocokkan dengan urutan opsi yang
+    // benar-benar ditampilkan ke siswa, bukan urutan baru yang teracak lagi.
+    soalData.forEach((data,i)=>{
 
         if(jawaban[i] === data.benar){
 

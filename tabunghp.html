@@ -256,6 +256,22 @@ model-viewer {
     justify-content: center;
     color: #b45309;
 }
+.soal-number.hots {
+    background: rgba(139, 92, 246, 0.25);
+    color: #6d28d9;
+}
+.hots-badge {
+    display: inline-block;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
 .jawaban-box {
     background: rgba(16, 185, 129, 0.15) !important;
     border-left-color: #10b981 !important;
@@ -388,6 +404,36 @@ model-viewer {
 .btn-outline-warning { color: #d97706 !important; border-color: #fbbf24 !important; }
 .btn-outline-warning:hover { background-color: #d97706 !important; color: #fff !important; }
 textarea.bg-dark { background-color: #f8fafc !important; }
+
+/* ========================================
+   PERBAIKAN KUIS: cegah tombol "berpindah"
+   posisi saat dipilih (opsi diberi lebar tetap
+   & dibungkus flex-wrap supaya layout stabil)
+======================================== */
+.opsi-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+.opt-btn {
+    min-width: 160px;
+    text-align: center;
+}
+.opt-btn:disabled {
+    opacity: 1;
+    cursor: default;
+}
+.opt-btn.jawaban-benar {
+    background-color: #16a34a !important;
+    border-color: #16a34a !important;
+    color: #fff !important;
+}
+.opt-btn.jawaban-salah {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #fff !important;
+}
 </style>
 </head>
 
@@ -427,8 +473,8 @@ textarea.bg-dark { background-color: #f8fafc !important; }
         <p class="smp-easy">
             <b>Tabung</b> adalah <span class="smp-bold">kaleng bulat panjang</span> yang punya:
             <ul class="mt-3 smp-easy">
-                <li><b>2 lingkaran</b> di atas & bawah (alas & atap)</li>
-                <li><b>1 dinding lengkung</b> yang melingkar</li>
+                <li><b>2 lingkaran</b> di atas & bawah (alas & tutup)</li>
+                <li><b>1 selimut tabung</b>, yaitu bidang lengkung yang membungkus badan tabung (sehari-hari sering disebut "dinding lengkung", tetapi istilah baku matematikanya adalah <b>selimut</b>)</li>
             </ul>
             Contoh: kaleng sarden, botol air, drum plastik!
             </p>
@@ -445,7 +491,7 @@ textarea.bg-dark { background-color: #f8fafc !important; }
             </h2>
             <ul class="text-light smp-easy">
                 <li>2 alas lingkaran <b>sama besar & sejajar</b></li>
-                    <li>Dinding samping <b>lengkung sempurna</b></li>
+                    <li>Selimut tabung <b>berbentuk lengkung sempurna</b></li>
                     <li>Tidak ada <b>sudut tajam</b></li>
                     <li>Tidak ada <b>rusuk garis lurus</b></li>
             </ul>
@@ -465,7 +511,7 @@ textarea.bg-dark { background-color: #f8fafc !important; }
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-check-double text-success smp-icon"></i>
-                    <span class="ms-2 smp-easy">Dinding lengkung halus</span>
+                    <span class="ms-2 smp-easy">Selimut tabung halus & lengkung</span>
                 </div>
             </div>
             <div class="col-md-6">
@@ -493,15 +539,15 @@ textarea.bg-dark { background-color: #f8fafc !important; }
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-circle text-info smp-icon"></i>
-                    <b class="ms-2">Alas & Atap</b>
+                    <b class="ms-2">Alas & Tutup</b>
                     <p class="small mt-2 mb-0 smp-easy">2 lingkaran sama besar</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-circle-notch text-info smp-icon"></i>
-                    <b class="ms-2">Dinding Samping</b>
-                    <p class="small mt-2 mb-0 smp-easy">1 bidang lengkung melingkar</p>
+                    <b class="ms-2">Selimut Tabung</b>
+                    <p class="small mt-2 mb-0 smp-easy">1 bidang lengkung yang menyelimuti sisi tabung</p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -542,15 +588,17 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                     <iframe src="https://www.geogebra.org/material/iframe/id/ekzub8ru/width/500/height/600/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
                 </div>
                 <h5 class="text-warning">🧠 Aktivitas 1: Analisis Sisi</h5>
-                <p>Amati model tabung di atas. Sebutkan sisi-sisi yang dimiliki tabung!</p>
+                <p>Amati model tabung di atas. Sebutkan sisi-sisi yang dimiliki tabung (alas, tutup, dan selimut)!</p>
                 <textarea class="form-control bg-dark text-white border-info mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
                 
                 <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
                 <p>Berapakah jumlah sisi pada tabung?</p>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi','3 Sisi',this)">2 Sisi</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi','3 Sisi',this)">3 Sisi</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi','3 Sisi',this)">4 Sisi</button>
-                <div id="res-db" class="mt-2 fw-bold"></div>
+                <div class="opsi-wrap">
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi','3 Sisi',this)">2 Sisi</button>
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi','3 Sisi',this)">3 Sisi</button>
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('sisi','3 Sisi',this)">4 Sisi</button>
+                </div>
+                <div id="res-sisi" class="mt-2 fw-bold"></div>
             </div>
 
             <div id="rusuk" class="tab-content">
@@ -562,10 +610,12 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                 <textarea class="form-control bg-dark text-white border-info mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
 
                 <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
-                <p>Berapakah jumlah rusuk lengkung pada tabung??</p>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk','2 Rusuk Lengkung',this)">1 Rusuk Lengkung</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk','2 Rusuk Lengkung',this)">2 Rusuk Lengkung</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk','2 Rusuk Lengkung',this)">3 Rusuk Lengkung</button>
+                <p>Berapakah jumlah rusuk lengkung pada tabung?</p>
+                <div class="opsi-wrap">
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk','2 Rusuk Lengkung',this)">1 Rusuk Lengkung</button>
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk','2 Rusuk Lengkung',this)">2 Rusuk Lengkung</button>
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk','2 Rusuk Lengkung',this)">3 Rusuk Lengkung</button>
+                </div>
                 <div id="res-rusuk" class="mt-2 fw-bold"></div>
             </div>
 
@@ -587,10 +637,12 @@ textarea.bg-dark { background-color: #f8fafc !important; }
             </div>
                 <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
                 <p>Jika jari-jari tabung 8 cm, maka diameternya adalah ....</p>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('ukur1','16 cm',this)">8 cm</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('ukur1','16 cm',this)">16 cm</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('ukur1','16 cm',this)">24 cm</button>
-                <div id="res-dr" class="mt-2 fw-bold"></div>
+                <div class="opsi-wrap">
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('ukur1','16 cm',this)">8 cm</button>
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('ukur1','16 cm',this)">16 cm</button>
+                    <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('ukur1','16 cm',this)">24 cm</button>
+                </div>
+                <div id="res-ukur1" class="mt-2 fw-bold"></div>
             </div>
 
             <div id="jaring" class="tab-content">
@@ -608,16 +660,20 @@ textarea.bg-dark { background-color: #f8fafc !important; }
 
                 <h5 class="text-warning">🧩 Aktivitas Logika 1</h5>
                 <p>Jika selimut tabung dibuka sempurna, bentuk bangun datar yang dihasilkan adalah ....</p>
-                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1','Persegi Panjang',this)">Lingkaran</button>
-                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1','Persegi Panjang',this)">Persegi Panjang</button>
-                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1','Persegi Panjang',this)">Segitiga</button>
+                <div class="opsi-wrap">
+                    <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1','Persegi Panjang',this)">Lingkaran</button>
+                    <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1','Persegi Panjang',this)">Persegi Panjang</button>
+                    <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr1','Persegi Panjang',this)">Segitiga</button>
+                </div>
                 <div id="res-jr1" class="mt-2 fw-bold"></div>
 
-                <h5 class="text-warning mt-3">🧩 Aktivitas Logika 2: Sisi Samping</h5>
+                <h5 class="text-warning mt-3">🧩 Aktivitas Logika 2: Jaring-Jaring Tabung</h5>
                 <p>Jaring-jaring tabung terdiri atas ....</p>
-                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2','2 Lingkaran dan 1 Persegi Panjang',this)">2 Lingkaran dan 1 Persegi Panjang</button>
-                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2','2 Lingkaran dan 1 Persegi Panjang',this)">1 Lingkaran dan 2 Persegi</button>
-                <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2','2 Lingkaran dan 1 Persegi Panjang',this)">3 Lingkaran</button>
+                <div class="opsi-wrap">
+                    <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2','2 Lingkaran dan 1 Persegi Panjang',this)">2 Lingkaran dan 1 Persegi Panjang</button>
+                    <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2','2 Lingkaran dan 1 Persegi Panjang',this)">1 Lingkaran dan 2 Persegi</button>
+                    <button class="btn btn-outline-warning opt-btn" onclick="cekEksplorasi('jr2','2 Lingkaran dan 1 Persegi Panjang',this)">3 Lingkaran</button>
+                </div>
                 <div id="res-jr2" class="mt-2 fw-bold"></div>
             </div>
         </div>
@@ -640,8 +696,8 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                     <div class="text-start mt-3">
                         <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
                         <ol class="small step-list smp-easy">
-                            <li>Luas 2 alas: <b>2πr²</b></li>
-                            <li>Luas dinding: <b>2πrt</b></li>
+                            <li>Luas 2 alas (lingkaran): <b>2πr²</b></li>
+                            <li>Luas selimut: <b>2πrt</b></li>
                             <li>Jumlahkan keduanya</li>
                         </ol>
                         </div>
@@ -654,7 +710,7 @@ textarea.bg-dark { background-color: #f8fafc !important; }
 
                     <div class="col-md-6">
                         <div class="formula-card">
-                            <h5 class="text-info">Isi Tabung (V)</h5>
+                            <h5 class="text-info">Volume Tabung (V)</h5>
                             <div class="py-3">
                                 <span class="fs-3 fw-bold text-white bg-dark p-2 rounded">V = πr²t</span>
                             </div>
@@ -662,7 +718,7 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                                 <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
                                 <ol class="small step-list smp-easy">
                                     <li>Luas alas: πr²</li>
-                                    <li>× tinggi = isi</li>
+                                    <li>× tinggi = volume</li>
                                 </ol>
                             </div>
                             <div class="example-box">
@@ -737,8 +793,8 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                                 <i class="fa-solid fa-drum me-2"></i>Kaleng Cat
                             </h5>
                             <p class="soal-text mb-2">
-                                Kaleng cat jari-jari 15 cm, tinggi 30 cm. 
-                                Hitung luas seluruh permukaan kaleng!
+                                Sebuah kaleng cat berbentuk tabung memiliki jari-jari alas 15 cm dan tinggi 30 cm.
+                                Tukang cat ingin tahu berapa luas seluruh permukaan kaleng tersebut (termasuk alas, tutup, dan selimutnya) untuk menghitung kebutuhan label.
                             </p>
                             <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: L = 2πr(r + t) (π=3,14)</small>
                         </div>
@@ -748,14 +804,14 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                             <div class="col-md-6">
                                 <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
                                 <div class="font-monospace small text-white bg-dark p-3 rounded">
-                                    2πr(r+t) = 2×3,14×15(15+30)<br>
+                                    L = 2πr(r+t) = 2×3,14×15(15+30)<br>
                                     = 94,2×45 = <span class="text-success fw-bold fs-5">4239 cm²</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center p-3 bg-success bg-opacity-25 rounded">
                                     <div class="fs-2 fw-bold text-success mb-1">✅ 4239 cm²</div>
-                                    <small class="text-white">Luas kertas pembungkus</small>
+                                    <small class="text-white">Luas seluruh permukaan kaleng</small>
                                 </div>
                             </div>
                         </div>
@@ -773,8 +829,8 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                                 <i class="fa-solid fa-tint me-2"></i>Botol Minuman
                             </h5>
                             <p class="soal-text mb-2">
-                                Botol air jari-jari 3 cm, tinggi 20 cm. 
-                                Berapa liter air yang muat? (π=3,14)
+                                Botol air berbentuk tabung memiliki jari-jari 3 cm dan tinggi 20 cm. 
+                                Berapa liter air yang muat di dalamnya? (π=3,14)
                             </p>
                             <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: V = πr²t (1 liter = 1000 cm³)</small>
                         </div>
@@ -809,8 +865,8 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                                 <i class="fa-solid fa-candy-cane me-2"></i>Kaleng Permen
                             </h5>
                             <p class="soal-text mb-2">
-                                Kaleng permen r=5 cm, t=12 cm. 
-                                Berapa luas alas kaleng? (π=3,14)
+                                Sebuah kaleng permen berbentuk tabung memiliki jari-jari 5 cm dan tinggi 12 cm. 
+                                Berapa luas alas kaleng tersebut? (π=3,14)
                             </p>
                             <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: LA = πr²</small>
                         </div>
@@ -826,14 +882,14 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                             <div class="col-md-6">
                                 <div class="text-center p-3 bg-success bg-opacity-25 rounded">
                                     <div class="fs-2 fw-bold text-success mb-1">✅ 78,5 cm²</div>
-                                    <small class="text-white">Luas 1 lingkaran</small>
+                                    <small class="text-white">Luas 1 lingkaran alas</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- SOAL 4 -->
+                <!-- SOAL 4: KELILING/KAWAT (kontekstual, menggantikan soal keliling sederhana) -->
                 <div class="soal-card" onclick="toggleJawaban(this)">
                     <div class="row align-items-center">
                         <div class="col-auto">
@@ -841,12 +897,14 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                         </div>
                         <div class="col">
                             <h5 class="soal-title mb-2">
-                                <i class="fa-solid fa-ruler-combined me-2"></i>Keliling Alas
+                                <i class="fa-solid fa-ruler-combined me-2"></i>Kawat Pengikat Drum
                             </h5>
                             <p class="soal-text mb-2">
-                                Tabung r=8 cm. Berapa keliling lingkaran alasnya? (π=3,14)
+                                Seorang tukang ingin mengikat sebuah drum berbentuk tabung dengan kawat.
+                                Kawat dililitkan mengelilingi alas drum sebanyak <b>2 kali</b>, lalu sisanya digunakan untuk menyusuri tinggi drum sebagai pengikat vertikal.
+                                Jika jari-jari alas drum 8 cm dan tinggi drum 15 cm, berapa <b>panjang kawat minimal</b> yang dibutuhkan? (π=3,14)
                             </p>
-                            <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: KA = 2πr</small>
+                            <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Panjang kawat = (2 × keliling alas) + tinggi, dengan keliling alas KA = 2πr</small>
                         </div>
                     </div>
                     <div class="jawaban-box mt-3" style="display: none;">
@@ -854,20 +912,60 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                             <div class="col-md-6">
                                 <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
                                 <div class="font-monospace small text-white bg-dark p-3 rounded">
-                                    KA = 2×3,14×8 = <span class="text-success fw-bold fs-5">50,24 cm</span>
+                                    KA = 2×3,14×8 = 50,24 cm<br>
+                                    2 lilitan = 2×50,24 = 100,48 cm<br>
+                                    + tinggi 15 cm<br>
+                                    Total = <span class="text-success fw-bold fs-5">115,48 cm</span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center p-3 bg-success bg-opacity-25 rounded">
-                                    <div class="fs-2 fw-bold text-success mb-1">✅ 50,24 cm</div>
-                                    <small class="text-white">Panjang pita melingkar</small>
+                                    <div class="fs-2 fw-bold text-success mb-1">✅ 115,48 cm</div>
+                                    <small class="text-white">Panjang kawat minimal yang dibutuhkan</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- SOAL 5 - BONUS -->
+                <!-- SOAL 5: KONTEKSTUAL SATUAN METER -->
+                <div class="soal-card" onclick="toggleJawaban(this)">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="soal-number">5</div>
+                        </div>
+                        <div class="col">
+                            <h5 class="soal-title mb-2">
+                                <i class="fa-solid fa-water me-2"></i>Pipa Saluran Air Sekolah
+                            </h5>
+                            <p class="soal-text mb-2">
+                                Sekolah memasang pipa saluran air berbentuk tabung dengan jari-jari <b>0,5 m</b> dan panjang (tinggi) <b>6 m</b>.
+                                Berapa liter air maksimal yang dapat tertampung dalam pipa tersebut? (π=3,14, 1 m³ = 1000 liter)
+                            </p>
+                            <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: V = πr²t, lalu ubah m³ ke liter</small>
+                        </div>
+                    </div>
+                    <div class="jawaban-box mt-3" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
+                                <div class="font-monospace small text-white bg-dark p-3 rounded">
+                                    V = 3,14×0,5²×6 = 3,14×0,25×6<br>
+                                    = 4,71 m³<br>
+                                    4,71 m³ × 1000 = <span class="text-success fw-bold fs-5">4.710 liter</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-center p-3 bg-success bg-opacity-25 rounded">
+                                    <div class="fs-2 fw-bold text-success mb-1">✅ 4.710 liter</div>
+                                    <small class="text-white">Kapasitas pipa air sekolah</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOAL 6 - BONUS -->
                 <div class="soal-card border-warning" onclick="toggleJawaban(this)">
                     <div class="row align-items-center">
                         <div class="col-auto">
@@ -878,8 +976,8 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                                 <i class="fa-solid fa-star me-2"></i>Drum Air
                             </h5>
                             <p class="soal-text mb-2">
-                                Drum besar r=50 cm, t=80 cm. 
-                                Berapa liter air yang muat? (π=3,14)
+                                Sebuah drum air berbentuk tabung memiliki jari-jari 50 cm dan tinggi 80 cm. 
+                                Berapa liter air yang dapat ditampung drum tersebut? (π=3,14)
                             </p>
                             <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>V = πr²t (1 liter = 1000 cm³)</small>
                         </div>
@@ -902,6 +1000,48 @@ textarea.bg-dark { background-color: #f8fafc !important; }
                         </div>
                     </div>
                 </div>
+
+                <!-- SOAL 7 - HOTS -->
+                <div class="soal-card border-3" style="border-color:#7c3aed;" onclick="toggleJawaban(this)">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="soal-number hots">?</div>
+                        </div>
+                        <div class="col">
+                            <h5 class="soal-title mb-2" style="color:#6d28d9;">
+                                <i class="fa-solid fa-brain me-2"></i>Dua Tabung Setara <span class="hots-badge">HOTS</span>
+                            </h5>
+                            <p class="soal-text mb-2">
+                                Tabung A dan Tabung B memiliki <b>volume yang sama persis</b>.
+                                Jari-jari Tabung B adalah <b>2 kali</b> jari-jari Tabung A. 
+                                Jika tinggi Tabung A adalah 20 cm, berapakah tinggi Tabung B?
+                                Jelaskan alasanmu menggunakan hubungan rumus volume, bukan hanya menebak!
+                            </p>
+                            <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Petunjuk: samakan V_A = V_B, lalu substitusikan r_B = 2×r_A</small>
+                        </div>
+                    </div>
+                    <div class="jawaban-box mt-3" style="display: none; background: rgba(124,58,237,0.12) !important; border-left-color:#7c3aed !important; border-color:#7c3aed !important;">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h6 class="mb-2" style="color:#6d28d9;"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
+                                <div class="font-monospace small text-white bg-dark p-3 rounded">
+                                    V_A = V_B<br>
+                                    πr_A²t_A = πr_B²t_B<br>
+                                    r_A²(20) = (2r_A)²(t_B)<br>
+                                    r_A²(20) = 4r_A²(t_B)<br>
+                                    t_B = 20 ÷ 4 = <span class="fw-bold fs-5" style="color:#a78bfa;">5 cm</span>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="text-center p-3 rounded" style="background: rgba(124,58,237,0.15);">
+                                    <div class="fs-2 fw-bold mb-1" style="color:#6d28d9;">✅ 5 cm</div>
+                                    <small class="text-white">Jari-jari 2× lebih besar → tinggi cukup ¼ dari semula agar volume tetap sama</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
         <button class="btn btn-warning mt-3" onclick="tanyaGemini('latihan')">
             🧠 Minta Soal Baru dari Gemini
         </button>
@@ -927,7 +1067,7 @@ textarea.bg-dark { background-color: #f8fafc !important; }
     <ul class="smp-easy text-light">
         <li><b>Luas permukaan</b> → kertas pembungkus kaleng</li>
         <li><b>Volume</b> → kapasitas isi minuman/cat</li>
-        <li><b>Keliling alas</b> → panjang pita melingkar</li>
+        <li><b>Keliling alas</b> → panjang pita atau kawat yang melingkari tabung</li>
     </ul>
 
     <!-- TUJUAN -->
@@ -1053,7 +1193,7 @@ textarea.bg-dark { background-color: #f8fafc !important; }
     </div>
         <div class="text-center mt-4">
             <button class="btn btn-info" onclick="tanyaGemini('dunia')">
-                🤖 Tanya AI tentang Balok di Sekitar Kita
+                🤖 Tanya AI tentang Tabung di Sekitar Kita
             </button>
         </div>
     </div>
@@ -1080,13 +1220,56 @@ textarea.bg-dark { background-color: #f8fafc !important; }
         }
     }
 
+    // ==========================================
+    // 🔥 CEK JAWABAN PILIHAN GANDA (EKSPLORASI)
+    // Ditulis ulang agar TIDAK mengubah urutan/posisi
+    // tombol saat opsi dipilih (opsi tetap diam di tempat,
+    // hanya warnanya yang berubah menjadi hijau/merah).
+    // ==========================================
+    function cekEksplorasi(id, jawabanBenar, btnDipilih) {
+        const wrapper = btnDipilih.closest('.opsi-wrap');
+        if (!wrapper) return;
+        const semuaTombol = wrapper.querySelectorAll('.opt-btn');
+        const teksDipilih = btnDipilih.textContent.trim();
+        const resultDiv = document.getElementById('res-' + id);
+
+        // Kunci semua tombol supaya tidak bisa diklik berkali-kali
+        // (mencegah opsi "berpindah" akibat re-render berulang)
+        semuaTombol.forEach(b => {
+            b.disabled = true;
+            b.classList.remove('jawaban-benar', 'jawaban-salah');
+        });
+
+        // Tandai jawaban yang benar selalu hijau
+        semuaTombol.forEach(b => {
+            if (b.textContent.trim() === jawabanBenar) {
+                b.classList.add('jawaban-benar');
+            }
+        });
+
+        // Jika yang dipilih salah, tandai merah juga
+        if (teksDipilih !== jawabanBenar) {
+            btnDipilih.classList.add('jawaban-salah');
+        }
+
+        if (resultDiv) {
+            if (teksDipilih === jawabanBenar) {
+                resultDiv.innerHTML = '✅ Benar! Jawabannya adalah "' + jawabanBenar + '"';
+                resultDiv.style.color = '#16a34a';
+            } else {
+                resultDiv.innerHTML = '❌ Belum tepat. Jawaban yang benar adalah "' + jawabanBenar + '"';
+                resultDiv.style.color = '#dc2626';
+            }
+        }
+    }
+
  // ==========================================
  // 🔥 SCRIPT BARU: TANYA GEMINI MOBILE FIX
  // ==========================================
  function tanyaGemini(mode) {
     let pesan = "";
 
-    if (mode === "peng_definition") {
+    if (mode === "peng_definition" || mode === "pengertian") {
         pesan = `PERAN KAMU: Guru matematika SMP yang sabar.
 ATURAN WAJIB:
 1. Gunakan pertanyaan pancingan.
@@ -1097,7 +1280,7 @@ FORMAT:
 - Langkah kecil
 - Pertanyaan berpikir
 - Jangan beri hasil akhir
-Saya siswa SMP. Jelaskan pengertian TABUNG dengan bahasa sangat sederhana seperti guru. Gunakan contoh benda sehari-hari agar mudah dipahami.`;
+Saya siswa SMP. Jelaskan pengertian TABUNG dengan bahasa sangat sederhana seperti guru, termasuk bagian alas, tutup, dan selimut tabung. Gunakan contoh benda sehari-hari agar mudah dipahami.`;
     } 
     else if (mode === "ciri") {
         pesan = `PERAN KAMU: Guru matematika SMP yang sabar.
@@ -1123,7 +1306,7 @@ FORMAT:
 - Langkah kecil
 - Pertanyaan berpikir
 - Jangan beri hasil akhir
-Saya siswa SMP. Jelaskan unsur-unsur Tabung (sisi, rusuk, Pengukuran Tabung, Jaring-jaring). Bantu saya membayangkan bentuknya dengan penjelasan sederhana.`;
+Saya siswa SMP. Jelaskan unsur-unsur Tabung (sisi, rusuk, selimut, jari-jari, tinggi, jaring-jaring). Bantu saya membayangkan bentuknya dengan penjelasan sederhana.`;
     } 
     else if (mode === "rumus") {
         pesan = `PERAN KAMU: Guru matematika SMP yang sabar.
@@ -1136,7 +1319,7 @@ FORMAT:
 - Langkah kecil
 - Pertanyaan berpikir
 - Jangan beri hasil akhir
-Saya siswa SMP. Jelaskan rumus Tabung (luas permukaan dan volume) secara pelan-pelan. Berikan: 1. Arti simbol (p, Phi, r, t) 2. Cara menghitung 3. Contoh soal 4. Pembahasan bertahap`;
+Saya siswa SMP. Jelaskan rumus Tabung (luas permukaan dan volume) secara pelan-pelan. Berikan: 1. Arti simbol (π, r, t) 2. Cara menghitung 3. Contoh soal 4. Pembahasan bertahap`;
     } 
     else if (mode === "latihan") {
         pesan = `PERAN KAMU: Guru matematika SMP yang sabar.
@@ -1149,7 +1332,7 @@ FORMAT:
 - Langkah kecil
 - Pertanyaan berpikir
 - Jangan beri hasil akhir
-Saya siswa SMP. Berikan 1 soal tentang Tabung. Jangan langsung beri jawaban, tapi beri petunjuk (clue) langkah demi langkah. Setelah itu baru beri pembahasan lengkap.`;
+Saya siswa SMP. Berikan 1 soal HOTS tentang Tabung yang membutuhkan penalaran, bukan hafalan rumus saja. Jangan langsung beri jawaban, tapi beri petunjuk (clue) langkah demi langkah. Setelah itu baru beri pembahasan lengkap.`;
     } 
     else if (mode === "dunia") {
         pesan = `PERAN KAMU: Guru matematika SMP yang sabar.

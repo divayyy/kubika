@@ -382,6 +382,41 @@ model-viewer {
 .bg-success.bg-opacity-25 { background-color: rgba(16, 185, 129, 0.12) !important; }
 .bg-warning.bg-opacity-25 { background-color: rgba(245, 158, 11, 0.15) !important; }
 
+/* OPTION BUTTONS - fixed sizing so nothing shifts when clicked */
+.opt-btn {
+    display: inline-block;
+    margin: 4px 6px 4px 0;
+    min-width: 110px;
+    border-width: 2px !important;
+    box-sizing: border-box;
+}
+.opt-btn.opt-selected-correct {
+    background: #10b981 !important;
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+}
+.opt-btn.opt-selected-wrong {
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
+}
+.opt-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+.hots-badge {
+    display: inline-block;
+    background: #7c3aed;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
 /* RESPONSIVE */
 @media(max-width: 768px) {
     model-viewer { height: 320px; }
@@ -453,9 +488,9 @@ model-viewer {
             </h2>
             <ul class="text-light smp-easy">
                 <li>Sisi berhadapan <b>sama besar & sejajar</b></li>
-                <li>Garis panjang yang sejajar <b>sama panjangnya</b></li>
-                <li>Garis miring di sisi sama <b>panjangnya sama</b></li>
-                <li>4 garis miring panjang <b>bertemu di tengah</b></li>
+                <li>Rusuk-rusuk yang sejajar <b>sama panjangnya</b></li>
+                <li>Diagonal bidang pada sisi yang sama <b>panjangnya sama</b></li>
+                <li>4 diagonal ruang <b>bertemu di satu titik tengah</b></li>
             </ul>
         </div>
         <button class="btn btn-sm btn-info mt-2" onclick="tanyaGemini('ciri')">
@@ -473,19 +508,19 @@ model-viewer {
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-check-double text-success smp-icon"></i>
-                    <span class="ms-2 smp-easy">Garis sejajar sama panjang</span>
+                    <span class="ms-2 smp-easy">Rusuk sejajar sama panjang</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-check-double text-success smp-icon"></i>
-                    <span class="ms-2 smp-easy">8 sudut 90° lurus</span>
+                    <span class="ms-2 smp-easy">8 sudut siku-siku (90°)</span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-check-double text-success smp-icon"></i>
-                    <span class="ms-2 smp-easy">4 garis miring panjang sama</span>
+                    <span class="ms-2 smp-easy">4 diagonal ruang sama panjang</span>
                 </div>
             </div>
         </div>
@@ -508,36 +543,36 @@ model-viewer {
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-minus text-info smp-icon"></i>
-                    <b class="ms-2">Garis (Rusuk)</b>
-                    <p class="small mt-2 mb-0 smp-easy">12 garis: 4P + 4L + 4T</p>
+                    <b class="ms-2">Rusuk</b>
+                    <p class="small mt-2 mb-0 smp-easy">12 rusuk: 4 rusuk panjang (p) + 4 rusuk lebar (l) + 4 rusuk tinggi (t)</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-circle-dot text-info smp-icon"></i>
-                    <b class="ms-2">Sudut</b>
-                    <p class="small mt-2 mb-0 smp-easy">8 sudut, ketemu 3 garis</p>
+                    <b class="ms-2">Titik Sudut</b>
+                    <p class="small mt-2 mb-0 smp-easy">8 titik sudut, tempat bertemunya 3 rusuk</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-slash text-info smp-icon"></i>
-                    <b class="ms-2">Garis Miring Sisi</b>
-                    <p class="small mt-2 mb-0 smp-easy">12 garis miring di sisi</p>
+                    <b class="ms-2">Diagonal Bidang</b>
+                    <p class="small mt-2 mb-0 smp-easy">12 diagonal bidang, terletak pada tiap sisi balok</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-arrows-up-down-left-right text-info smp-icon"></i>
-                    <b class="ms-2">Garis Miring Panjang</b>
-                    <p class="small mt-2 mb-0 smp-easy">4 garis tembus balok</p>
+                    <b class="ms-2">Diagonal Ruang</b>
+                    <p class="small mt-2 mb-0 smp-easy">4 diagonal ruang, menembus bagian dalam balok</p>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="property-card">
                     <i class="fa-solid fa-vector-square text-info smp-icon"></i>
-                    <b class="ms-2">Bidang Miring</b>
-                    <p class="small mt-2 mb-0 smp-easy">6 bidang miring tebal</p>
+                    <b class="ms-2">Bidang Diagonal</b>
+                    <p class="small mt-2 mb-0 smp-easy">6 bidang diagonal di dalam balok</p>
                 </div>
             </div>
         </div>
@@ -560,7 +595,6 @@ model-viewer {
         </div>
 
         <div class="geo-box">
-            <!-- URL ditambahkan parameter allowUpscale=true & ditambahi resolusi manual -->
             <div id="sisi" class="tab-content active">
                 <div class="iframe-wrapper">
                     <iframe src="https://www.geogebra.org/material/iframe/id/k4mued6m/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
@@ -586,7 +620,7 @@ model-viewer {
                 <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
                 
                 <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
-                <p>Berapakah total seluruh rusuk (garis kerangka) pada balok?</p>
+                <p>Berapakah total seluruh rusuk pada balok?</p>
                 <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk', '12 Rusuk', this)">8 Rusuk</button>
                 <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk', '12 Rusuk', this)">10 Rusuk</button>
                 <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('rusuk', '12 Rusuk', this)">12 Rusuk</button>
@@ -595,7 +629,7 @@ model-viewer {
 
             <div id="dbidang" class="tab-content">
                 <div class="iframe-wrapper">
-                    <iframe src="https://www.geogebra.org/material/iframe/id/w4kqvtty/width/1000/height/650/allowUpscale=true/rc=false/ai/false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
+                    <iframe src="https://www.geogebra.org/material/iframe/id/w4kqvtty/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
                 </div>
                 <h5 class="text-warning">🧠 Aktivitas 1: Analisis Diagonal Bidang</h5>
                 <p>Jelaskan di mana letak garis diagonal bidang pada sebuah sisi balok!</p>
@@ -614,14 +648,14 @@ model-viewer {
                     <iframe src="https://www.geogebra.org/material/iframe/id/wxpnps8g/width/1000/height/650/allowUpscale=true/rc=false/ai=false/sdz=false/smb=false/stb=false/stbh=false/ld=false/sri=false"></iframe>
                 </div>
                 <h5 class="text-warning">🧠 Aktivitas 1: Analisis Diagonal Ruang</h5>
-                <p>Apa yang dimaksud dengan garis diagonal ruang?</p>
+                <p>Apa yang dimaksud dengan diagonal ruang?</p>
                 <textarea class="form-control mb-3" placeholder="Ketik jawabanmu di sini..."></textarea>
                 
                 <h5 class="text-warning">✍️ Aktivitas 2: Pilihan Ganda</h5>
-                <p>Berapakah jumlah garis diagonal ruang yang menembus bagian dalam balok?</p>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Garis', this)">2 Garis</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Garis', this)">4 Garis</button>
-                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Garis', this)">8 Garis</button>
+                <p>Berapakah jumlah diagonal ruang yang menembus bagian dalam balok?</p>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Diagonal', this)">2 Diagonal</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Diagonal', this)">4 Diagonal</button>
+                <button class="btn btn-outline-info opt-btn" onclick="cekEksplorasi('dr', '4 Diagonal', this)">8 Diagonal</button>
                 <div id="res-dr" class="mt-2 fw-bold"></div>
             </div>
 
@@ -681,7 +715,7 @@ model-viewer {
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="formula-card">
-                    <h5 class="text-info">Luas Seluruh Sisi (L)</h5>
+                    <h5 class="text-info">Luas Permukaan (L)</h5>
                     <div class="py-3">
                         <span class="fs-4 fw-bold bg-dark p-2 rounded">L = 2 × (pl + pt + lt)</span>
                     </div>
@@ -703,7 +737,7 @@ model-viewer {
 
             <div class="col-md-6">
                 <div class="formula-card">
-                    <h5 class="text-info">Isi Kotak (V)</h5>
+                    <h5 class="text-info">Volume (V)</h5>
                     <div class="py-3">
                         <span class="fs-3 fw-bold bg-dark p-2 rounded">V = p × l × t</span>
                     </div>
@@ -711,7 +745,7 @@ model-viewer {
                         <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
                         <ol class="small step-list smp-easy">
                             <li>Luas alas: p × l</li>
-                            <li>× tinggi = isi</li>
+                            <li>× tinggi = volume</li>
                         </ol>
                     </div>
                     <div class="example-box">
@@ -725,27 +759,28 @@ model-viewer {
         <div class="row g-4 mt-4">
             <div class="col-md-6">
                 <div class="formula-card">
-                    <h5 class="text-info">Keliling Balok (K)</h5>
+                    <h5 class="text-info">Total Panjang Rusuk</h5>
                     <div class="py-3">
-                        <span class="fs-4 fw-bold bg-dark p-2 rounded">K = 4(p + l + t)</span>
+                        <span class="fs-4 fw-bold bg-dark p-2 rounded">ΣR = 4(p + l + t)</span>
                     </div>
                     <div class="text-start mt-3">
                         <p class="small fw-bold text-warning mb-1">Langkah mudah:</p>
                         <ol class="small step-list smp-easy">
                             <li>Jumlahkan p + l + t</li>
-                            <li>× 4</li>
+                            <li>× 4 (karena masing-masing ada 4 rusuk)</li>
                         </ol>
+                        <p class="small text-muted mb-0">*Berguna misalnya untuk menghitung panjang kawat kerangka balok, bukan "keliling" (keliling adalah istilah untuk bangun datar).</p>
                     </div>
                     <div class="example-box">
                         <p class="small mb-1"><b>Contoh:</b> p=5, l=3, t=4</p>
-                        <p class="small font-monospace mb-0">K = 4(12) = <b>48 cm</b></p>
+                        <p class="small font-monospace mb-0">ΣR = 4(12) = <b>48 cm</b></p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="formula-card">
-                    <h5 class="text-info">Garis Miring Panjang (d)</h5>
+                    <h5 class="text-info">Diagonal Ruang (d)</h5>
                     <div class="py-3">
                         <span class="fs-4 fw-bold bg-dark p-2 rounded">d = √(p² + l² + t²)</span>
                     </div>
@@ -783,11 +818,11 @@ model-viewer {
                 </div>
                 <div class="col">
                     <h5 class="soal-title mb-2">
-                        <i class="fa-solid fa-box me-2"></i>Kotak Buku
+                        <i class="fa-solid fa-truck me-2"></i>Bak Truk Pengangkut Pasir
                     </h5>
                     <p class="soal-text mb-2">
-                        Sebuah kotak buku berukuran panjang 40 cm, lebar 25 cm, tinggi 15 cm. 
-                        Hitunglah luas seluruh sisi kotak tersebut!
+                        Sebuah bak truk berbentuk balok berukuran panjang 4 m, lebar 2 m, dan tinggi 1,5 m akan
+                        dilapisi plat besi pada seluruh permukaannya. Hitunglah luas permukaan bak truk tersebut!
                     </p>
                     <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: L = 2(pl + pt + lt)</small>
                 </div>
@@ -797,16 +832,16 @@ model-viewer {
                     <div class="col-md-6">
                         <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
                         <div class="font-monospace small bg-dark p-3 rounded">
-                            pl = 40 × 25 = 1000<br>
-                            pt = 40 × 15 = 600<br>
-                            lt = 25 × 15 = 375<br>
-                            L = 2(1000 + 600 + 375) = <span class="text-success fw-bold fs-5">3950 cm²</span>
+                            pl = 4 × 2 = 8<br>
+                            pt = 4 × 1,5 = 6<br>
+                            lt = 2 × 1,5 = 3<br>
+                            L = 2(8 + 6 + 3) = <span class="text-success fw-bold fs-5">34 m²</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="text-center p-3 bg-success bg-opacity-25 rounded">
-                            <div class="fs-2 fw-bold text-success mb-1">✅ 3950 cm²</div>
-                            <small>Luas cat kotak</small>
+                            <div class="fs-2 fw-bold text-success mb-1">✅ 34 m²</div>
+                            <small>Luas permukaan bak truk</small>
                         </div>
                     </div>
                 </div>
@@ -857,13 +892,13 @@ model-viewer {
                 </div>
                 <div class="col">
                     <h5 class="soal-title mb-2">
-                        <i class="fa-solid fa-home me-2"></i>Batu Bata
+                        <i class="fa-solid fa-home me-2"></i>Kerangka Kawat Balok
                     </h5>
                     <p class="soal-text mb-2">
-                        Sebuah batu bata berukuran 22 cm × 10 cm × 5 cm. 
-                        Berapa keliling rangka 1 buah bata?
+                        Sebuah kerangka balok akan dibuat dari kawat, dengan ukuran 22 cm × 10 cm × 5 cm. 
+                        Berapa panjang kawat yang dibutuhkan untuk membuat seluruh rusuk kerangka tersebut?
                     </p>
-                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: K = 4(p + l + t)</small>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: Total panjang rusuk = 4(p + l + t)</small>
                 </div>
             </div>
             <div class="jawaban-box mt-3" style="display: none;">
@@ -872,13 +907,13 @@ model-viewer {
                         <h6 class="text-success mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian:</h6>
                         <div class="font-monospace small bg-dark p-3 rounded">
                             p + l + t = 22 + 10 + 5 = 37<br>
-                            K = 4 × 37 = <span class="text-success fw-bold fs-5">148 cm</span>
+                            Panjang kawat = 4 × 37 = <span class="text-success fw-bold fs-5">148 cm</span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="text-center p-3 bg-success bg-opacity-25 rounded">
                             <div class="fs-2 fw-bold text-success mb-1">✅ 148 cm</div>
-                            <small>Panjang kawat rangka</small>
+                            <small>Panjang kawat kerangka</small>
                         </div>
                     </div>
                 </div>
@@ -893,11 +928,11 @@ model-viewer {
                 </div>
                 <div class="col">
                     <h5 class="soal-title mb-2">
-                        <i class="fa-solid fa-ruler-combined me-2"></i>Garis Miring
+                        <i class="fa-solid fa-ruler-combined me-2"></i>Diagonal Ruang
                     </h5>
                     <p class="soal-text mb-2">
                         Balok kayu ukuran 30 cm × 20 cm × 10 cm. 
-                        Berapa panjang garis miring ruang (dari 1 sudut ke sudut berlawanan)?
+                        Berapa panjang diagonal ruangnya (dari 1 titik sudut ke titik sudut yang berlawanan, menembus bagian dalam balok)?
                     </p>
                     <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus: d = √(p² + l² + t²)</small>
                 </div>
@@ -914,14 +949,14 @@ model-viewer {
                     <div class="col-md-6">
                         <div class="text-center p-3 bg-success bg-opacity-25 rounded">
                             <div class="fs-2 fw-bold text-success mb-1">✅ 37,42 cm</div>
-                            <small>Panjang tembus balok</small>
+                            <small>Panjang diagonal ruang</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SOAL 5 - BONUS -->
+        <!-- SOAL 5 - DIPERBAIKI -->
         <div class="soal-card border-warning" onclick="toggleJawaban(this)">
             <div class="row align-items-center">
                 <div class="col-auto">
@@ -932,8 +967,8 @@ model-viewer {
                         <i class="fa-solid fa-star me-2"></i>Lemari Baju
                     </h5>
                     <p class="soal-text mb-2">
-                        Lemari baju: p=120 cm, l=60 cm, t=200 cm. 
-                        Pak Joko mau cat seluruh lemari. Berapa cm² cat yang dibutuhkan?
+                        Sebuah lemari baju berbentuk balok berukuran p=120 cm, l=60 cm, t=200 cm. 
+                        Pak Joko ingin mengecat seluruh permukaan lemari tersebut. Berapa <b>luas permukaan</b> lemari yang akan dicat?
                     </p>
                     <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Rumus lengkap L = 2(pl + pt + lt)</small>
                 </div>
@@ -952,12 +987,51 @@ model-viewer {
                     <div class="col-md-6">
                         <div class="text-center p-3 bg-warning bg-opacity-25 rounded border-warning">
                             <div class="fs-2 fw-bold text-warning mb-1">✅ 86.400 cm²</div>
-                            <small class="text-dark fw-bold">= 8,64 m² cat!</small>
+                            <small class="text-dark fw-bold">= 8,64 m² luas permukaan</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- SOAL 6 - HOTS -->
+        <div class="soal-card border-danger" onclick="toggleJawaban(this)">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="soal-number text-danger">🧠</div>
+                </div>
+                <div class="col">
+                    <h5 class="soal-title mb-2 text-danger">
+                        <i class="fa-solid fa-boxes-stacked me-2"></i>Bandingkan Dua Kotak Kado
+                        <span class="hots-badge">HOTS</span>
+                    </h5>
+                    <p class="soal-text mb-2">
+                        Toko kado punya 2 pilihan kotak dengan bahan kertas kado yang sama:<br>
+                        Kotak A: p=20 cm, l=15 cm, t=10 cm<br>
+                        Kotak B: p=25 cm, l=12 cm, t=10 cm<br>
+                        Kedua kotak memiliki volume yang hampir sama. Jika kamu ingin <b>menghemat kertas kado</b>, kotak mana yang sebaiknya dipilih? Buktikan jawabanmu dengan perhitungan!
+                    </p>
+                    <small class="text-warning"><i class="fa-solid fa-calculator me-1"></i>Bandingkan volume DAN luas permukaan kedua kotak</small>
+                </div>
+            </div>
+            <div class="jawaban-box mt-3" style="display: none;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 class="text-danger mb-2"><i class="fa-solid fa-check-circle me-2"></i>Penyelesaian & Analisis:</h6>
+                        <div class="font-monospace small bg-dark p-3 rounded">
+                            Kotak A: V = 20×15×10 = 3000 cm³ &nbsp;|&nbsp; L = 2(300+200+150) = 1300 cm²<br>
+                            Kotak B: V = 25×12×10 = 3000 cm³ &nbsp;|&nbsp; L = 2(300+250+120) = 1340 cm²<br><br>
+                            Volume kedua kotak <b>sama persis</b> (3000 cm³), tetapi luas permukaan berbeda.
+                        </div>
+                        <div class="text-center p-3 bg-danger bg-opacity-25 rounded mt-3">
+                            <div class="fs-4 fw-bold text-danger mb-1">✅ Pilih Kotak A (1300 cm²)</div>
+                            <small class="text-dark">Kesimpulan: pada volume yang sama, bentuk yang ukurannya lebih "seimbang" (tidak terlalu pipih/panjang sebelah) cenderung punya luas permukaan lebih kecil, sehingga lebih hemat kertas kado.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button class="btn btn-warning mt-3" onclick="tanyaGemini('latihan')">
             🧠 Minta Soal Baru dari Gemini
         </button>
@@ -983,7 +1057,7 @@ model-viewer {
         <ul class="smp-easy">
             <li><b>Luas permukaan</b> → untuk mengetahui jumlah bahan (misalnya cat atau kertas pembungkus)</li>
             <li><b>Volume</b> → untuk mengetahui kapasitas isi suatu benda</li>
-            <li><b>Keliling rangka</b> → untuk menghitung panjang bahan seperti kayu atau besi</li>
+            <li><b>Total panjang rusuk</b> → untuk menghitung panjang bahan seperti kawat, kayu, atau besi kerangka</li>
         </ul>
 
         <!-- TUJUAN -->
@@ -1043,7 +1117,7 @@ model-viewer {
                         <div class="col-md-4">
                             <div class="text-center bg-dark p-3 rounded">
                                 <div class="fs-5 fw-bold text-danger">1.760 cm</div>
-                                <small>Panjang rangka</small>
+                                <small>Total panjang rusuk</small>
                             </div>
                         </div>
                     </div>
@@ -1117,7 +1191,7 @@ model-viewer {
 </div>
 
 <script>
-    // TAB GEOGEBRA FUNCTION (dari file pertama)
+    // TAB GEOGEBRA FUNCTION
     function openTab(btn, id) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active'));
@@ -1125,7 +1199,7 @@ model-viewer {
         btn.classList.add('active');
     }
 
-    // TOGGLE JAWABAN SOAL (dari file kedua)
+    // TOGGLE JAWABAN SOAL
     function toggleJawaban(card) {
         const jawaban = card.querySelector('.jawaban-box');
         if (jawaban.style.display === 'none' || jawaban.style.display === '') {
@@ -1136,7 +1210,42 @@ model-viewer {
         }
     }
 
-    // TANYA GEMINI AI (dari file kedua - sudah BALOK)
+    // CEK JAWABAN EKSPLORASI (pilihan ganda GeoGebra)
+    // Fungsi ini sebelumnya belum ada -> menyebabkan tombol pilihan tidak merespons dengan benar.
+    // Dibuat agar TIDAK mengubah/menghapus elemen tombol lain (hanya menambah class),
+    // sehingga posisi tombol tidak "berpindah" saat diklik.
+    function cekEksplorasi(groupId, jawabanBenar, btnEl) {
+        const container = btnEl.parentElement;
+        const semuaBtn = container.querySelectorAll('.opt-btn');
+        const hasil = document.getElementById('res-' + groupId);
+
+        // Kunci semua tombol di grup ini agar tidak bisa diklik ulang (mencegah reflow berulang)
+        semuaBtn.forEach(b => { b.disabled = true; });
+
+        const jawabanUser = btnEl.textContent.trim();
+        const benar = jawabanUser === jawabanBenar;
+
+        // Tandai tombol yang diklik saja, tanpa mengubah urutan/posisi tombol lain
+        if (benar) {
+            btnEl.classList.add('opt-selected-correct');
+        } else {
+            btnEl.classList.add('opt-selected-wrong');
+            // tandai juga tombol dengan jawaban yang benar
+            semuaBtn.forEach(b => {
+                if (b.textContent.trim() === jawabanBenar) {
+                    b.classList.add('opt-selected-correct');
+                }
+            });
+        }
+
+        if (hasil) {
+            hasil.innerHTML = benar
+                ? `<span class="text-success"><i class="fa-solid fa-circle-check me-1"></i>Benar! Jawabannya ${jawabanBenar}.</span>`
+                : `<span class="text-danger"><i class="fa-solid fa-circle-xmark me-1"></i>Kurang tepat. Jawaban yang benar: ${jawabanBenar}.</span>`;
+        }
+    }
+
+    // TANYA GEMINI AI
     function tanyaGemini(mode) {
         let pesan = "";
 
@@ -1151,12 +1260,12 @@ Gunakan poin-poin sederhana dan contoh benda nyata.`;
         } 
 
         else if (mode === "unsur") {
-            pesan = `Saya siswa SMP. Jelaskan unsur-unsur balok (sisi, rusuk, sudut, diagonal).
+            pesan = `Saya siswa SMP. Jelaskan unsur-unsur balok (sisi, rusuk, titik sudut, diagonal bidang, diagonal ruang, bidang diagonal).
 Bantu saya membayangkan bentuknya dengan penjelasan sederhana.`;
         } 
 
         else if (mode === "rumus") {
-            pesan = `Saya siswa SMP. Jelaskan rumus balok (luas permukaan dan volume) secara pelan-pelan.
+            pesan = `Saya siswa SMP. Jelaskan rumus balok (luas permukaan, volume, dan total panjang rusuk) secara pelan-pelan.
 Berikan:
 1. Arti simbol (p, l, t)
 2. Cara menghitung
@@ -1165,7 +1274,7 @@ Berikan:
         } 
 
         else if (mode === "latihan") {
-            pesan = `Saya siswa SMP. Berikan 1 soal tentang balok.
+            pesan = `Saya siswa SMP. Berikan 1 soal HOTS (bernalar, bukan hanya masukkan angka ke rumus) tentang balok.
 Jangan langsung beri jawaban, tapi beri petunjuk (clue) langkah demi langkah.
 Setelah itu baru beri pembahasan lengkap.`;
         } 
